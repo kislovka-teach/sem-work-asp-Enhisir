@@ -1,0 +1,37 @@
+.karmaBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: bold;
+}
+
+.arrowButton {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 1px;
+
+    text-align: center;
+    border-width: 1px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #d9d9d900;
+}
+
+.arrowButton:hover {
+    border-color: var(--border-color);
+}
+
+.positive {
+    color: #7BFF7B;
+}
+
+.negative {
+    color: #FF7B7B;
+}
+
+.neutral {
+    color: #D9D9D9;
+}

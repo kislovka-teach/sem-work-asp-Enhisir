@@ -20,5 +20,5 @@ export type Article = {
     text: string;
     thread: Thread;
     tags: Tag[];
-    carma: number;
+    karma: number;
 };
