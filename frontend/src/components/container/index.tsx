@@ -1,6 +1,6 @@
 import classes from "./container.module.css"
 
-function Container({className, children }: { className: string | undefined, children: React.ReactNode }) {
+function Container({ children, className }: { children: React.ReactNode, className?: string,  }) {
     return <div className={ [classes.container, className].join(" ") } >
         { children }
     </div>
