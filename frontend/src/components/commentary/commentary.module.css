@@ -1,0 +1,19 @@
+.commentary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 1rem;
+
+    width: 100%;
+    height: fit-content;
+
+    background: #FFFFFF;
+}
+
+.commentaryHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

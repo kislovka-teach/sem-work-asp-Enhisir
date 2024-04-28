@@ -15,6 +15,10 @@
   justify-content: space-between;
 }
 
+.header a:hover {
+  color: #dbdbdb;
+}
+
 .leftWrapper {
   display: flex;
 }
@@ -39,10 +43,10 @@
 
 .logoContainer:hover {
   background-color: #00000040;
+  color: #dbdbdb;
 }
 
 .logoImage {
-  background-color: #424242cc;
   overflow: hidden;
   border-radius: 1rem;
   height: calc(var(--header-height) * 0.8);
@@ -51,7 +55,7 @@
 
 .logoTitle {
   font-family: "Quicksand", Helvetica;
-  font-weight: 300;
+  font-weight: 1000;
 }
 
 .links {
