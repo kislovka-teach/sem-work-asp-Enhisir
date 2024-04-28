@@ -1,4 +1,4 @@
-import ArticleCatalogContainer from "./articleCatalogContainer";
+import ArticleContainer from "./articleContainer";
 import ArticleFeed from "./articleFeed";
 
-export { ArticleCatalogContainer, ArticleFeed };
+export { ArticleContainer, ArticleFeed };

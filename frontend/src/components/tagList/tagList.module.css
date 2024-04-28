@@ -34,3 +34,8 @@
     /* number of lines to show */
     /* fallback */
 }
+
+.tag a {
+    color: black;
+    text-decoration: none;
+}

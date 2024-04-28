@@ -6,7 +6,7 @@ import classes from "./commentaryThread.module.css"
 
 function CommentaryThread({ rootCommentaries, isNested = false }: { rootCommentaries: Commentary[], isNested?: boolean }) {
     return (!isNested)
-        ? <Container>
+        ? <Container className={classes.containerCustomBorder}>
             <h2>Комментарии</h2>
             {
                 rootCommentaries.flatMap((c: Commentary, index: number) =>

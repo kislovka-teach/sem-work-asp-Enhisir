@@ -47,7 +47,42 @@ export type Commentary = {
     datetime: Date;
 
     children?: Commentary[];
+};
+
+export type ResumeThumbnail = {
+    avatarLink: string;
+    name: string;
+    profession: string;
+    lookingForWork: boolean;
+    leftSalaryBorder: number;
+    rightSalaryBorder: number;
+    grade: Grade;
+};
+
+export type ResumeProfile = {
+    header: ResumeThumbnail;
+    workPlaces: WorkPlace[];
+    about: string;
 }
 
-// при создании трэда создать дерево комментариев, 
-// добавлять детей на клиенте, затем сделать отображение через bfs
+export type WorkPlace = {
+    companyName: string;
+    grade: Grade;
+    description: string;
+    dateBegin: Date;
+    dateEnd: Date;
+}
+
+export enum Grade {
+    Intern,
+    Junior,
+    Middle,
+    Senior
+};
+
+export const GradeToString = {
+    [Grade.Intern]: 'Стажер',
+    [Grade.Junior]: 'Младший',
+    [Grade.Middle]: 'Средний',
+    [Grade.Senior]: 'Старший',
+}

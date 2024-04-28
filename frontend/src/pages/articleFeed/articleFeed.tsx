@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { Article } from "../../types";
-import { ArticleCatalogContainer, ArticleFeed } from "../../components/article";
+import { ArticleContainer, ArticleFeed } from "../../components/article";
 
 import classes from "./articleFeed.module.css";
 import TagList from "../../components/tagList";
 import PopularArticlesList from "../../components/popularArticlesList";
+import CustomBeatLoader from "../../components/beatLoader";
+import Container from "../../components/container";
 
 function ArticleFeedPage() {
     const [loading, setLoading] = useState<boolean | undefined>();
     const [articles, setArticles] = useState<Article[] | null>();
 
     useEffect(() => {
+        setLoading(true);
         setArticles([
             {
                 author: {
@@ -103,19 +106,22 @@ function ArticleFeedPage() {
                 tags: []
             }
         ]);
+        setLoading(false);
     }, []);
 
+    if (loading) return <CustomBeatLoader />;
+    
     return <div className={classes.horizontalBlock}>
-        <ArticleFeed>{
-            articles?.flatMap(item => <ArticleCatalogContainer article={item} />)
+        <ArticleFeed style={{ paddingBottom: '1.5rem' }}>{
+            articles && articles.length > 0 
+            ? articles?.flatMap(item => <ArticleContainer article={item} isShort={true} />)
+            : <Container><h2>Статьи не найдены</h2></Container>
         }</ArticleFeed>
         <div className={classes.rightSegment}>
             <TagList />
             <PopularArticlesList />
         </div>
     </div>;
-
-    return;
 }
 
 export default ArticleFeedPage;

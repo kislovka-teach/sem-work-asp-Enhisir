@@ -1,4 +1,4 @@
-import classes from "./carmablock.module.css";
+import classes from "./karmablock.module.css";
 
 function KarmaBlock({ points, onDown, onUp }: { points: number, onDown: () => void, onUp: () => void }) {
     const accentColor: string = points > 0 ? classes.positive : points < 0 ? classes.negative : classes.neutral;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Tag } from '../../types';
 
 import classes from './tagList.module.css';
+import { Link } from 'react-router-dom';
 
 function TagList() {
     const [tagList, setTagList] = useState<Tag[]>([
@@ -28,7 +29,7 @@ function TagList() {
         {
             tagList?.flatMap((tag, index) =>
                 <div className={classes.tag} key={`tag_thumb_${index}`}>
-                    <h4>{tag.name}</h4>
+                    <Link to={`/feed?tag=${tag.id}`}><h4>{tag.name}</h4></Link>
                 </div>)
         }
     </div>;
