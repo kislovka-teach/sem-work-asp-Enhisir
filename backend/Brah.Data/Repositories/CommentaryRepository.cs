@@ -14,17 +14,14 @@ public class CommentaryRepository(AppDbContext context) : IRepository<Commentary
             .Include(e => e.Children.OrderBy(c => c.TimePosted))
             .SingleOrDefaultAsync(expression);
 
-    public IEnumerable<Commentary> GetRangeAsync(Expression<Func<Commentary, bool>>? expression = null)
+    public IQueryable<Commentary> GetRange()
     {
-        var query = context.Commentaries
+        return context.Commentaries
             .AsNoTracking()
             .Include(e => e.Author)
             .Include(e => e.Children.OrderBy(c => c.TimePosted))
-            .AsQueryable();
-
-        if (expression is not null) query = query.Where(expression);
-        
-        return query.OrderByDescending(c => c.TimePosted);
+            .AsQueryable()
+            .OrderByDescending(c => c.TimePosted);
     }
     
     public async Task<Commentary> AddAsync(Commentary entity)

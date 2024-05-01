@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using Brah.Data.Models.Articles;
 using Brah.Data.Models.Resumes;
 

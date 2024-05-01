@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brah.Data", "Brah.Data\Brah
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brah.BL", "Brah.BL\Brah.BL.csproj", "{70F67191-A0BA-4101-8194-F3C460398E34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brah.Api", "Brah.Api\Brah.Api.csproj", "{278856BE-507F-4EDC-A74D-9F2852753ED0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{70F67191-A0BA-4101-8194-F3C460398E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70F67191-A0BA-4101-8194-F3C460398E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70F67191-A0BA-4101-8194-F3C460398E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{278856BE-507F-4EDC-A74D-9F2852753ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{278856BE-507F-4EDC-A74D-9F2852753ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{278856BE-507F-4EDC-A74D-9F2852753ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{278856BE-507F-4EDC-A74D-9F2852753ED0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

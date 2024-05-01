@@ -14,16 +14,12 @@ public class ResumeRepository(AppDbContext context) : IRepository<Resume>
             .Include(r => r.WorkPlaces)
             .SingleOrDefaultAsync(expression);
 
-    public IEnumerable<Resume> GetRangeAsync(Expression<Func<Resume, bool>>? expression = null)
+    public IQueryable<Resume> GetRange()
     {
-        var query = context.Resumes
+        return context.Resumes
             .AsNoTracking()
             .Include(r => r.Tags)
             .AsQueryable();
-
-        if (expression is not null) query = query.Where(expression);
-        
-        return query;
     }
     
     public async Task<Resume> AddAsync(Resume entity)

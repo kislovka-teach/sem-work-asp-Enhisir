@@ -16,21 +16,16 @@ public class ArticleRepository(AppDbContext context) : IRepository<Article>
             .Include(e => e.Commentaries)
             .SingleOrDefaultAsync(expression);
 
-    public IEnumerable<Article> GetRangeAsync(Expression<Func<Article, bool>>? expression = null)
+    public IQueryable<Article> GetRange()
     {
-        var query = context.Articles
+        return context.Articles
             .AsNoTracking()
             .Include(e => e.Author)
             .Include(e => e.Topic)
             .Include(e => e.Tags)
-            .AsQueryable();
-
-        if (expression is not null) query = query.Where(expression);
-        
-        return  query.OrderByDescending(a => a.TimePosted);
+            .AsQueryable()
+            .OrderByDescending(a => a.TimePosted);
     }
-            
-            
     
     public async Task<Article> AddAsync(Article entity)
     {

@@ -18,10 +18,9 @@ public class StandardRepository<TEntity> : IRepository<TEntity> where TEntity : 
     public async Task<TEntity?> GetSingleOrDefault(Expression<Func<TEntity, bool>> expression) 
         => await _dbSet.AsNoTracking().SingleOrDefaultAsync(expression);
 
-    public  IEnumerable<TEntity> GetRangeAsync(Expression<Func<TEntity, bool>>? expression = null)
+    public  IQueryable<TEntity> GetRange()
     {
-        if (expression is null) return _dbSet.AsNoTracking().AsQueryable();
-        return _dbSet.AsNoTracking().Where(expression);
+        return _dbSet.AsNoTracking().AsQueryable();
     }
     
     public async Task<TEntity> AddAsync(TEntity entity)
