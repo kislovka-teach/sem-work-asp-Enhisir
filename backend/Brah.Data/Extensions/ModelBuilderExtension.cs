@@ -68,6 +68,10 @@ public static class ModelBuilderExtension
             .HasIndex(t => t.Name)
             .HasMethod("GiST")  // внимательно посмотреть
             .IsTsVectorExpressionIndex("english, russian");
+
+        modelBuilder.Entity<User>()
+            .HasIndex(u => u.UserName)
+            .IsUnique();
     }
 
     public static void PrepareData(this ModelBuilder modelBuilder)

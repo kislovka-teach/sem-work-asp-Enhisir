@@ -6,12 +6,14 @@ namespace Brah.BL.Abstractions;
 
 public interface IDisplayArticlesService
 {
-    public List<ArticleShortResponseDto> GetAll();
+    public Task<List<ArticleShortResponseDto>> GetAll(int? skip = null, int? take = null);
 
     public Task<List<ArticleShortResponseDto>> GetFiltered(
         string? title = null,
         Topic? topic = null,
-        List<TagDto>? tags = null);
+        List<TagDto>? tags = null, 
+        int? skip = null,
+        int? take = null);
 
     public Task<ArticleFullResponseDto?> GetById(int articleId);
 }

@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Dtos\Requests\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Brah.Data\Brah.Data.csproj" />
     </ItemGroup>
 

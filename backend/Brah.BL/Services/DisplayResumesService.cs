@@ -5,9 +5,7 @@ using Brah.BL.Dtos.Responses.Article;
 using Brah.BL.Dtos.Responses.Resume;
 using Brah.Data.Abstractions;
 using Brah.Data.Enums;
-using Brah.Data.Models.Articles;
 using Brah.Data.Models.Resumes;
-using Brah.Data.Models.Tags;
 using Microsoft.EntityFrameworkCore;
 
 namespace Brah.BL.Services;
@@ -44,8 +42,8 @@ public class DisplayResumesService(
 
     public async Task<ArticleFullResponseDto?> GetById(int id)
     {
-        var article = await resumeRepository
+        var resume = await resumeRepository
             .GetSingleOrDefault(t => t.Id == id);
-        return mapper.Map<ArticleFullResponseDto>(article);
+        return mapper.Map<ArticleFullResponseDto>(resume);
     }
 }

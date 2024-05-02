@@ -1,3 +1,5 @@
+using Brah.Data.Enums;
+
 namespace Brah.BL.Dtos.Meta;
 
 public class UserDto
@@ -7,4 +9,5 @@ public class UserDto
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public string AvatarLink { get; set; } = null!;
+    public Role Role { get; set; }
 }
