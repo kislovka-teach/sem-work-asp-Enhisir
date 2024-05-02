@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
-    
+
     width: 100%;
-    justify-content: center;
 }
 
 .verticalBlock {
@@ -12,6 +11,7 @@
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
+    justify-content: center;
 }
 
 .avatarContainer {
@@ -30,7 +30,7 @@
     object-position: 50% 50%;
 }
 
-.profession {
+.name {
     font-style: normal;
     font-weight: 400;
     font-size: 20pt;
@@ -38,17 +38,8 @@
     color: #1E1E1E;
 }
 
-.salary p {
-    font-weight: bold;
-    font-size: 20pt;
-    color: #00CA00;
-}
-
-.resumeFooter {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    text-transform: lowercase;
+.buttonBlock {
+    width: min-content;
+    text-wrap: nowrap;
+    justify-content: center;
 }

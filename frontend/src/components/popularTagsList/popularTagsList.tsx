@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Tag } from '../../types';
 
-import classes from './tagList.module.css';
+import classes from './popularTagsList.module.css';
 import { Link } from 'react-router-dom';
 
-function TagList() {
+function PopularTagsList() {
     const [tagList, setTagList] = useState<Tag[]>([
         {
             id: 1,
@@ -34,4 +34,4 @@ function TagList() {
         }
     </div>;
 }
-export default TagList;
+export default PopularTagsList;

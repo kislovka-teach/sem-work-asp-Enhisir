@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Article } from "../../types";
-import { ArticleContainer, ArticleFeed } from "../../components/article";
-
-import classes from "./articleFeed.module.css";
-import TagList from "../../components/tagList";
+import ArticleContainer from "../../components/article";
+import PopularTagsList from "../../components/popularTagsList";
 import PopularArticlesList from "../../components/popularArticlesList";
 import CustomBeatLoader from "../../components/beatLoader";
 import Container from "../../components/container";
+import Feed from "../../components/general/feed";
+
+import classes from "./articleFeed.module.css";
 
 function ArticleFeedPage() {
     const [loading, setLoading] = useState<boolean | undefined>();
@@ -18,7 +19,7 @@ function ArticleFeedPage() {
             {
                 author: {
                     avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                    nickname: "Продажная шваль 47"
+                    username: "Продажная шваль 47"
                 },
                 title: 'Почему я люблю хонкай стар рейл',
                 text: "`sql  INSERT INTO illness_history (id, illness_id, clinic_card_id, doctor_id, start_date, end_date, additional_info)\n" +
@@ -36,7 +37,7 @@ function ArticleFeedPage() {
             {
                 author: {
                     avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                    nickname: "Продажная шваль 47"
+                    username: "Продажная шваль 47"
                 },
                 title: 'Почему я люблю хонкай стар рейл',
                 text: "`sql  INSERT INTO illness_history (id, illness_id, clinic_card_id, doctor_id, start_date, end_date, additional_info)\n" +
@@ -54,7 +55,7 @@ function ArticleFeedPage() {
             {
                 author: {
                     avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                    nickname: "Продажная шваль 47"
+                    username: "Продажная шваль 47"
                 },
                 title: 'Почему я люблю хонкай стар рейл',
                 text: "`sql  INSERT INTO illness_history (id, illness_id, clinic_card_id, doctor_id, start_date, end_date, additional_info)\n" +
@@ -72,7 +73,7 @@ function ArticleFeedPage() {
             {
                 author: {
                     avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                    nickname: "Продажная шваль 47"
+                    username: "Продажная шваль 47"
                 },
                 title: 'Почему я люблю хонкай стар рейл',
                 text: "`sql  INSERT INTO illness_history (id, illness_id, clinic_card_id, doctor_id, start_date, end_date, additional_info)\n" +
@@ -90,7 +91,7 @@ function ArticleFeedPage() {
             {
                 author: {
                     avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                    nickname: "Продажная шваль 47"
+                    username: "Продажная шваль 47"
                 },
                 title: 'Почему я люблю хонкай стар рейл',
                 text: "`sql  INSERT INTO illness_history (id, illness_id, clinic_card_id, doctor_id, start_date, end_date, additional_info)\n" +
@@ -112,13 +113,13 @@ function ArticleFeedPage() {
     if (loading) return <CustomBeatLoader />;
     
     return <div className={classes.horizontalBlock}>
-        <ArticleFeed style={{ paddingBottom: '1.5rem' }}>{
+        <Feed style={{ paddingBottom: '1.5rem' }}>{
             articles && articles.length > 0 
             ? articles?.flatMap(item => <ArticleContainer article={item} isShort={true} />)
             : <Container><h2>Статьи не найдены</h2></Container>
-        }</ArticleFeed>
+        }</Feed>
         <div className={classes.rightSegment}>
-            <TagList />
+            <PopularTagsList />
             <PopularArticlesList />
         </div>
     </div>;

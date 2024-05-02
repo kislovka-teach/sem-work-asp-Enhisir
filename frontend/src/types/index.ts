@@ -1,5 +1,5 @@
 export type Author = {
-    nickname: string;
+    username: string;
     avatarLink: string;
 };
 
@@ -29,14 +29,16 @@ export type ArticleThumbnail = {
 };
 
 export type Profile = {
+    username: string;
     firstName: string;
     lastName: string;
-    gender: number;
-    avatar: string | null;
-    email: string;
+    avatarLink: string | null;
+
+    articles: Article[];
+    tags: Tag[];
 };
 
-export const getProfileName = (profile: Profile) =>
+export const getProfileName = (profile: Profile | ResumeThumbnail) =>
     profile.firstName + " " + profile.lastName;
 
 export type Commentary = {
@@ -51,7 +53,8 @@ export type Commentary = {
 
 export type ResumeThumbnail = {
     avatarLink: string;
-    name: string;
+    firstName: string;
+    lastName: string;
     profession: string;
     lookingForWork: boolean;
     leftSalaryBorder: number;
@@ -59,22 +62,23 @@ export type ResumeThumbnail = {
     grade: Grade;
 };
 
-export type ResumeProfile = {
-    header: ResumeThumbnail;
-    workPlaces: WorkPlace[];
+export type ResumeProfile = ResumeThumbnail | {
     about: string;
-}
+    tags: Tag[],
+    workPlaces: WorkPlace[];
+};
 
 export type WorkPlace = {
     companyName: string;
+    profession: string;
     grade: Grade;
     description: string;
     dateBegin: Date;
     dateEnd: Date;
-}
+};
 
 export enum Grade {
-    Intern,
+    Intern = 0,
     Junior,
     Middle,
     Senior
@@ -85,4 +89,9 @@ export const GradeToString = {
     [Grade.Junior]: 'Младший',
     [Grade.Middle]: 'Средний',
     [Grade.Senior]: 'Старший',
-}
+};
+
+export enum Gender {
+    Male,
+    Female
+};

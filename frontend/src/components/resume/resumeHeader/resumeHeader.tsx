@@ -1,4 +1,4 @@
-import { GradeToString, ResumeThumbnail } from "../../../types";
+import { GradeToString, ResumeThumbnail, getProfileName } from "../../../types";
 import Container from "../../container";
 
 import classes from "./resumeHeader.module.css"
@@ -10,7 +10,7 @@ function ResumeHeader({ thumb }: { thumb: ResumeThumbnail }) {
                 <img src={thumb.avatarLink} />
             </div>
             <div className={classes.verticalBlock}>
-                <h1>{thumb.name}</h1>
+                <h1>{getProfileName(thumb)}</h1>
                 <p className={classes.profession}>{thumb.profession}</p>
                 <div className={classes.resumeFooter}>
                     <div className={classes.salary}>

@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { Article, Commentary, Grade, ResumeThumbnail } from "../../types";
-import { ArticleContainer, ArticleFeed } from "../../components/article";
-
-import classes from "./articleFull.module.css";
-import TagList from "../../components/tagList";
+import { Article, Commentary } from "../../types";
+import ArticleContainer from "../../components/article";
+import PopularTagsList from "../../components/popularTagsList";
 import PopularArticlesList from "../../components/popularArticlesList";
 import CustomBeatLoader from "../../components/beatLoader";
 import CommentaryThread from "../../components/commentary/commentaryThread";
 import Container from "../../components/container";
-import ResumeHeader from "../../components/resume/resumeHeader";
-import ResumeTagList from "../../components/resume/resumeTagList/resumeTagList";
+import Feed from "../../components/general/feed";
+
+import classes from "./articleFull.module.css";
 
 function ArticleFullPage() {
     const [articleLoading, setArticleLoading] = useState<boolean | undefined>();
@@ -23,7 +22,7 @@ function ArticleFullPage() {
             {
                 author: {
                     avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                    nickname: "Продажная шваль 47"
+                    username: "Продажная шваль 47"
                 },
                 title: 'Почему я люблю хонкай стар рейл',
                 text: "`sql  INSERT INTO illness_history (id, illness_id, clinic_card_id, doctor_id, start_date, end_date, additional_info)\n" +
@@ -49,7 +48,7 @@ function ArticleFullPage() {
                 id: 1,
                 author: {
                     avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                    nickname: "Продажная шваль 47"
+                    username: "Продажная шваль 47"
                 },
                 text: 'Почему я люблю хонкай стар рейл',
                 children: [
@@ -57,7 +56,7 @@ function ArticleFullPage() {
                         id: 10,
                         author: {
                             avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                            nickname: "Продажная шваль 47"
+                            username: "Продажная шваль 47"
                         },
                         text: 'Почему я люблю хонкай стар рейл',
                         children: [],
@@ -69,7 +68,7 @@ function ArticleFullPage() {
                 id: 2,
                 author: {
                     avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                    nickname: "Продажная шваль 47"
+                    username: "Продажная шваль 47"
                 },
                 text: 'Почему я люблю хонкай стар рейл',
                 datetime: undefined
@@ -78,7 +77,7 @@ function ArticleFullPage() {
                 id: 3,
                 author: {
                     avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                    nickname: "Продажная шваль 47"
+                    username: "Продажная шваль 47"
                 },
                 text: 'Почему я люблю хонкай стар рейл',
                 datetime: undefined
@@ -87,45 +86,24 @@ function ArticleFullPage() {
         setRootCommentariesLoading(false);
     }, []);
 
-    const thumb: ResumeThumbnail = {
-        avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-        name: "Konstantin Rerich",
-        profession: "raspizdyai",
-        lookingForWork: true,
-        leftSalaryBorder: 100_000,
-        rightSalaryBorder: 150_000,
-        grade: Grade.Senior
-    };
-
     if (articleLoading) return <CustomBeatLoader />;
 
     if (article == null) return <Container><h2>Статья не найдена</h2></Container>;
 
-        return <div className={classes.horizontalBlock}>
-            <ArticleFeed>
-                <ResumeHeader thumb={thumb} />
-                <ResumeTagList tags={[
-                    {
-                        id: 1,
-                        name: 'sdsdsd'
-                    },
-                    {
-                        id: 2,
-                        name: 'sdsdsd fasdsd'
-                    }
-                ]} />
-                <ArticleContainer article={article} />
-                {
-                    rootCommentariesLoading 
+    return <div className={classes.horizontalBlock}>
+        <Feed>
+            <ArticleContainer article={article} />
+            {
+                rootCommentariesLoading
                     ? <CustomBeatLoader />
                     : <CommentaryThread rootCommentaries={rootCommentaries ?? []} />
-                }
-            </ArticleFeed>
-            <div className={classes.rightSegment}>
-                <TagList />
-                <PopularArticlesList />
-            </div>
-        </div>;
+            }
+        </Feed>
+        <div className={classes.rightSegment}>
+            <PopularTagsList />
+            <PopularArticlesList />
+        </div>
+    </div>;
 }
 
 export default ArticleFullPage;
