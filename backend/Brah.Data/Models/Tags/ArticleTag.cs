@@ -1,3 +1,3 @@
 namespace Brah.Data.Models.Tags;
 
-public class ArticleTag : Tag {}
+public class ArticleTag : Tag { }

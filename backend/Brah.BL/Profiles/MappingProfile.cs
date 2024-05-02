@@ -17,11 +17,11 @@ public class MappingProfile : Profile
         CreateMap<ArticleTag, TagDto>().ReverseMap();
         CreateMap<ResumeTag, TagDto>().ReverseMap();
         CreateMap<WorkPlace, WorkPlaceDto>().ReverseMap();
-        
+
         CreateMap<Article, ArticleShortResponseDto>();
         CreateMap<Article, ArticleFullResponseDto>();
         CreateMap<Commentary, CommentaryResponseDto>();
-        
+
         CreateMap<Resume, ResumeShortResponseDto>();
         CreateMap<Resume, ResumeFullResponseDto>();
     }

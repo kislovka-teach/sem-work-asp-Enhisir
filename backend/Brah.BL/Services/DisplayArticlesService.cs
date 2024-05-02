@@ -28,7 +28,7 @@ public class DisplayArticlesService(
         int? skip = null,
         int? take = null)
     {
-        var query =  articleRepository.GetRange()
+        var query = articleRepository.GetRange()
             .Where(x => title == null || EF.Functions.ToTsVector(x.Title).Matches(title))
             .Where(x => topic == null || x.TopicId == topic.Id)
             .Where(x => tags == null || tags.Count == 0 ||

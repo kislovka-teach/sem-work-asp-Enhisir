@@ -8,14 +8,14 @@ namespace Brah.BL.Services;
 
 public class DisplayProfileService(
     IMapper mapper,
-    IUserRepository userRepository) 
+    IUserRepository userRepository)
     : IDisplayProfileService
 {
     public async Task<ProfileResponseDto> GetById(int id)
     {
         var user = await userRepository
             .GetSingleOrDefault(
-                t => t.Id == id, 
+                t => t.Id == id,
                 includeArticles: true);
 
         if (user is null) throw new NotFoundException();

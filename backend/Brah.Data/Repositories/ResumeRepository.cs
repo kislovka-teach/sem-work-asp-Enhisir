@@ -7,7 +7,7 @@ namespace Brah.Data.Repositories;
 
 public class ResumeRepository(AppDbContext context) : IRepository<Resume>
 {
-    public async Task<Resume?> GetSingleOrDefault(Expression<Func<Resume, bool>> expression) 
+    public async Task<Resume?> GetSingleOrDefault(Expression<Func<Resume, bool>> expression)
         => await context.Resumes
             .AsNoTracking()
             .Include(r => r.Tags)
@@ -21,7 +21,7 @@ public class ResumeRepository(AppDbContext context) : IRepository<Resume>
             .Include(r => r.Tags)
             .AsQueryable();
     }
-    
+
     public async Task<Resume> AddAsync(Resume entity)
     {
         var newEntity = await context.Resumes.AddAsync(entity);

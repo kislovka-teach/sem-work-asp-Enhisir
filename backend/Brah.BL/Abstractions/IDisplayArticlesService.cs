@@ -11,7 +11,7 @@ public interface IDisplayArticlesService
     public Task<List<ArticleShortResponseDto>> GetFiltered(
         string? title = null,
         Topic? topic = null,
-        List<TagDto>? tags = null, 
+        List<TagDto>? tags = null,
         int? skip = null,
         int? take = null);
 

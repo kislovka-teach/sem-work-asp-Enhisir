@@ -13,9 +13,10 @@ public static class ServiceCollectionExtensions
             .AddScoped<IDisplayArticlesService, DisplayArticlesService>()
             .AddScoped<IDisplayProfileService, DisplayProfileService>()
             .AddScoped<IDisplayResumesService, DisplayResumesService>()
-            .AddScoped<IAuthService, AuthService>();
+            .AddScoped<IAuthService, AuthService>()
+            .AddScoped<IPasswordHasherService, PasswordHasherService>();
     }
-    
+
     public static IServiceCollection AddAutoMapperConfigured(this IServiceCollection serviceCollection)
     {
         return serviceCollection

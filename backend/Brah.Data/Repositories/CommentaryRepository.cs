@@ -7,7 +7,7 @@ namespace Brah.Data.Repositories;
 
 public class CommentaryRepository(AppDbContext context) : IRepository<Commentary>
 {
-    public async Task<Commentary?> GetSingleOrDefault(Expression<Func<Commentary, bool>> expression) 
+    public async Task<Commentary?> GetSingleOrDefault(Expression<Func<Commentary, bool>> expression)
         => await context.Commentaries
             .AsNoTracking()
             .Include(e => e.Author)
@@ -23,7 +23,7 @@ public class CommentaryRepository(AppDbContext context) : IRepository<Commentary
             .AsQueryable()
             .OrderByDescending(c => c.TimePosted);
     }
-    
+
     public async Task<Commentary> AddAsync(Commentary entity)
     {
         var newEntity = await context.Commentaries.AddAsync(entity);

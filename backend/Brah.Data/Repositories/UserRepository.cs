@@ -9,7 +9,7 @@ namespace Brah.Data.Repositories;
 public class UserRepository(AppDbContext context) : IUserRepository
 {
     public async Task<User?> GetSingleOrDefault(
-        Expression<Func<User, bool>> expression, 
+        Expression<Func<User, bool>> expression,
         bool includeArticles = false,
         bool includeResume = false)
         => await context.Users
@@ -17,7 +17,7 @@ public class UserRepository(AppDbContext context) : IUserRepository
             .IncludeIf(u => u.Articles, includeArticles)
             .IncludeIf(u => u.Resume, includeResume)
             .SingleOrDefaultAsync(expression);
-    
+
 
     public IEnumerable<User> GetRangeAsync(
         Expression<Func<User, bool>>? expression = null,

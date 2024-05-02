@@ -4,7 +4,7 @@ namespace Brah.Data.Abstractions;
 
 public interface IRepository<TEntity>
 {
-    public Task<TEntity?> GetSingleOrDefault(Expression<Func<TEntity,bool>> expression);
+    public Task<TEntity?> GetSingleOrDefault(Expression<Func<TEntity, bool>> expression);
     public IQueryable<TEntity> GetRange();
 
     public Task<TEntity> AddAsync(TEntity entity);

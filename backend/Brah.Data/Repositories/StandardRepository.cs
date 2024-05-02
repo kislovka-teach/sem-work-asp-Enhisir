@@ -14,15 +14,15 @@ public class StandardRepository<TEntity> : IRepository<TEntity> where TEntity : 
         _context = context;
         _dbSet = _context.Set<TEntity>();
     }
-    
-    public async Task<TEntity?> GetSingleOrDefault(Expression<Func<TEntity, bool>> expression) 
+
+    public async Task<TEntity?> GetSingleOrDefault(Expression<Func<TEntity, bool>> expression)
         => await _dbSet.AsNoTracking().SingleOrDefaultAsync(expression);
 
-    public  IQueryable<TEntity> GetRange()
+    public IQueryable<TEntity> GetRange()
     {
         return _dbSet.AsNoTracking().AsQueryable();
     }
-    
+
     public async Task<TEntity> AddAsync(TEntity entity)
     {
         var newEntity = await _dbSet.AddAsync(entity);

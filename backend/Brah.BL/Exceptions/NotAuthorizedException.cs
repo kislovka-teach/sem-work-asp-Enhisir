@@ -1,3 +1,3 @@
 namespace Brah.BL.Exceptions;
 
-public class NotAuthorizedException : Exception {}
+public class NotAuthorizedException : Exception { }

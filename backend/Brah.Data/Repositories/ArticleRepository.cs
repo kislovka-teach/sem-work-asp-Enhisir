@@ -7,7 +7,7 @@ namespace Brah.Data.Repositories;
 
 public class ArticleRepository(AppDbContext context) : IRepository<Article>
 {
-    public async Task<Article?> GetSingleOrDefault(Expression<Func<Article, bool>> expression) 
+    public async Task<Article?> GetSingleOrDefault(Expression<Func<Article, bool>> expression)
         => await context.Articles
             .AsNoTracking()
             .Include(e => e.Author)
@@ -26,7 +26,7 @@ public class ArticleRepository(AppDbContext context) : IRepository<Article>
             .AsQueryable()
             .OrderByDescending(a => a.TimePosted);
     }
-    
+
     public async Task<Article> AddAsync(Article entity)
     {
         var newEntity = await context.Articles.AddAsync(entity);
