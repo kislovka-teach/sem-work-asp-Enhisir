@@ -8,8 +8,8 @@ public class ArticlesController(
     IDisplayArticlesService displayArticlesService
 ) : ControllerBase
 {
-    [HttpGet("/")]
-    public async Task<IResult> GetArticlesCatalog(
+    [HttpGet]
+    public async Task<IResult> Get(
         [FromQuery] string? title = null,
         [FromQuery] int? skip = null,
         [FromQuery] int? take = null)
@@ -19,5 +19,11 @@ public class ArticlesController(
                 title: title,
                 skip: skip,
                 take: take));
+    }
+
+    [HttpGet("{articleId:int}")]
+    public async Task<IResult> GetById(int articleId)
+    {
+        return Results.Ok(await displayArticlesService.GetById(articleId));
     }
 }

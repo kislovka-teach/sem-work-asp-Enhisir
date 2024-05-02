@@ -2,8 +2,11 @@ import { Tag } from "../../types";
 
 import classes from "./tag.module.css";
 
-export function TagItem({ tag, editable = false }: { tag: Tag, editable?: boolean }) {
-    return <div className={[classes.resumeTag, (editable ? classes.resumeTagEditable : '')].join(" ").trim()}>
+export function TagItem({ tag, classname, editable = false }: { tag: Tag, editable?: boolean, classname?: string }) {
+    return <div className={[
+        classes.resumeTag, 
+        (editable ? classes.resumeTagEditable : ''), 
+        (classname ?? '')].join(" ").trim()}>
         <p>{tag.name}</p>
     </div>;
 }

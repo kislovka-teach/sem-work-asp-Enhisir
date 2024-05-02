@@ -1,5 +1,5 @@
 export type Author = {
-    username: string;
+    userName: string;
     avatarLink: string;
 };
 
@@ -18,7 +18,7 @@ export type Article = {
     author: Author;
     title: string;
     text: string;
-    thread: Thread;
+    topic: Thread;
     tags: Tag[];
     karma: number;
 };
