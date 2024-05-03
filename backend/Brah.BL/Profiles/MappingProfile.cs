@@ -26,11 +26,16 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(src => src.DateBegin.ToString("MM/dd/yyyy")))
             .ForMember(
                 dest => dest.DateEnd,
-                opt => opt.MapFrom(src => src.DateEnd == null 
-                    ? null 
+                opt => opt.MapFrom(src => src.DateEnd == null
+                    ? null
                     : src.DateEnd.Value.ToString("MM/dd/yyyy")));
 
-        CreateMap<Article, ArticleShortResponseDto>();
+        CreateMap<Article, ArticleShortResponseDto>()
+            .ForMember(
+                dest => dest.Text,
+                opt => opt.MapFrom(src =>
+                    src.Text.Length >= 200 ? $"{src.Text.Substring(0, 197)}..." : src.Text)
+            );
         CreateMap<Article, ArticleFullResponseDto>();
         CreateMap<Article, ArticleThumbnailResponseDto>();
         CreateMap<Commentary, CommentaryResponseDto>();
@@ -60,6 +65,5 @@ public class MappingProfile : Profile
             .ForMember(
                 dest => dest.UserName,
                 opt => opt.MapFrom(src => src.User.UserName));
-
     }
 }
