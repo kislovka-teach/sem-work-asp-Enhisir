@@ -14,8 +14,6 @@ import ArticleTagSelector from "../../components/article/articleTagSelector";
 
 function ArticleFeedPage() {
     const [searchParams,] = useSearchParams();
-    const title = searchParams.get("title");
-
     const [loading, setLoading] = useState<boolean>(true);
     const [articles, setArticles] = useState<Article[] | null>();
 

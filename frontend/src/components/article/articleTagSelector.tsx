@@ -12,7 +12,8 @@ function ArticleTagSelector() {
   const [addedOptions, setAddedOptions] = useState<TagOptionContainer[]>([]);
   const [searchString, setSearchString] = useState<string>("");
 
-  const onSearch = ({ props, state, methods }) => {
+  // inner function copy
+  const onSearch = ({ props, state, methods }: { props: any, state: any, methods: any }) => {
     console.log({ props, state, methods });
 
     setSearchString(state.search);
@@ -20,7 +21,7 @@ function ArticleTagSelector() {
     const regexp = new RegExp(methods.safeString(state.search), 'i');
     return methods
       .sortBy()
-      .filter((item) =>
+      .filter((item: any) =>
         regexp.test(getByPath(item, props.searchBy) || getByPath(item, props.valueField))
       );
   };
@@ -123,10 +124,10 @@ const StyledSelect = styled(Select)`
   }
 `;
 
-export const getByPath = (object, path) => {
+export const getByPath = (object: any, path: any) => {
   if (!path) {
     return;
   }
 
-  return path.split('.').reduce((acc, value) => acc[value], object);
+  return path.split('.').reduce((acc: any, value: any) => acc[value], object);
 };
