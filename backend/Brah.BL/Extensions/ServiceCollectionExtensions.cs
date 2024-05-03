@@ -11,6 +11,7 @@ public static class ServiceCollectionExtensions
     {
         return serviceCollection
             .AddScoped<IDisplayArticlesService, DisplayArticlesService>()
+            .AddScoped<ISearchArticleTagsService, SearchArticleTagsService>()
             .AddScoped<IDisplayProfileService, DisplayProfileService>()
             .AddScoped<IDisplayResumesService, DisplayResumesService>()
             .AddScoped<IAuthService, AuthService>()

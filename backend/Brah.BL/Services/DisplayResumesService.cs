@@ -28,7 +28,7 @@ public class DisplayResumesService(
         List<Grade>? grades = null)
     {
         var query = await resumeRepository.GetRange()
-            .Where(x => profession == null || EF.Functions.ToTsVector(x.Profession).Matches(profession))
+            .Where(x => profession == null || EF.Functions.TrigramsAreSimilar(x.Profession, profession))
             .Where(x => leftSalaryBorder == null || x.LeftSalaryBorder >= leftSalaryBorder)
             .Where(x => rightSalaryBorder == null || x.RightSalaryBorder <= rightSalaryBorder)
             .Where(x => tags == null || tags.Count == 0 ||

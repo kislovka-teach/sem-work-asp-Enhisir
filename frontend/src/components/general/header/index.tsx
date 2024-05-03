@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SearchComponent from "../search/search";
 
 import Logo from '../../../assets/logo.svg'
 import classes from "./header.module.css"
@@ -12,6 +13,9 @@ function Header() {
                 </div>
                 <h1 className={classes.logoTitle}>Брах</h1>
             </Link>
+        </div>
+        <div className={classes.midWrapper}>
+            <SearchComponent />
         </div>
         <div className={classes.rightWrapper} >
             <Link to="/login" className={classes.profileContainer}>

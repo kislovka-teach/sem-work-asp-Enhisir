@@ -6,7 +6,7 @@ import KarmaBlock from "../karma";
 import { Link } from "react-router-dom";
 import { TagItem } from "../tagContainer/tag";
 
-// import classes from './article.module.css';
+// import classes from './articleContainer.module.css';
 
 function ArticleContainer({ article, isShort = false }: { article: Article, isShort?: boolean }) {
     return <Container>

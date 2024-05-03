@@ -11,6 +11,8 @@ public static class ModelBuilderExtension
 {
     public static void PrepareEntities(this ModelBuilder modelBuilder)
     {
+        modelBuilder.HasPostgresExtension("pg_trgm");
+
         modelBuilder.Entity<Article>()
             .HasOne<User>(a => a.Author)
             .WithMany(u => u.Articles)
@@ -27,12 +29,20 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Article>()
             .HasIndex(b => b.Title)
             .HasMethod("GIN")
-            .IsTsVectorExpressionIndex("russian"); // добавить индекс для английского
+            .HasOperators("gin_trgm_ops");
+        modelBuilder.Entity<Article>()
+            .HasIndex(b => b.Title)
+            .HasMethod("GIN")
+            .HasOperators("gin_trgm_ops");// добавить индекс для английского
 
         modelBuilder.Entity<ArticleTag>()
             .HasIndex(x => x.Name)
-            .HasMethod("GiST")
-            .IsTsVectorExpressionIndex("russian");
+            .HasMethod("GIN")
+            .HasOperators("gin_trgm_ops");
+        modelBuilder.Entity<ArticleTag>()
+            .HasIndex(x => x.Name)
+            .HasMethod("GIN")
+            .HasOperators("gin_trgm_ops");
 
         modelBuilder.Entity<Commentary>()
             .HasOne<User>(c => c.Author)
@@ -62,18 +72,26 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Resume>()
             .HasIndex(b => b.Profession)
             .HasMethod("GIN")
-            .IsTsVectorExpressionIndex("russian");
+            .HasOperators("gin_trgm_ops");
+        modelBuilder.Entity<Resume>()
+            .HasIndex(b => b.Profession)
+            .HasMethod("GIN")
+            .HasOperators("gin_trgm_ops");
 
         modelBuilder.Entity<ResumeTag>()
             .HasIndex(t => t.Name)
-            .HasMethod("GiST")
-            .IsTsVectorExpressionIndex("russian");
+            .HasMethod("GIN")
+            .HasOperators("gin_trgm_ops");
+        modelBuilder.Entity<ResumeTag>()
+            .HasIndex(t => t.Name)
+            .HasMethod("GIN")
+            .HasOperators("gin_trgm_ops");
 
         modelBuilder.Entity<User>()
             .HasIndex(u => u.UserName)
             .IsUnique();
     }
-    
+
 
     public static void PrepareData(this ModelBuilder modelBuilder)
     {

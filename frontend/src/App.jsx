@@ -15,6 +15,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<ArticleFeedPage />}></Route>
+                    <Route path="/articles" element={<ArticleFeedPage />}></Route>
                     <Route path="/articles/:articleId" element={<ArticleFullPage />}></Route>
                     <Route path="/profiles/:profileId" element={<ProfilePage />}></Route>
                     <Route path="/resumes/:profileId" element={<ResumeProfilePage />}></Route>

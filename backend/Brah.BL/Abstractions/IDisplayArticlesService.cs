@@ -9,7 +9,7 @@ public interface IDisplayArticlesService
     public Task<List<ArticleShortResponseDto>> GetRange(
         string? title = null,
         Topic? topic = null,
-        List<TagDto>? tags = null,
+        int[]? tags = null,
         int? skip = null,
         int? take = null);
 
