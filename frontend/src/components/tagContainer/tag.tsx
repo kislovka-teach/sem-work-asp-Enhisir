@@ -4,15 +4,15 @@ import classes from "./tag.module.css";
 
 export function TagItem({ tag, classname, editable = false }: { tag: Tag, editable?: boolean, classname?: string }) {
     return <div className={[
-        classes.resumeTag, 
-        (editable ? classes.resumeTagEditable : ''), 
+        classes.tag, 
+        (editable ? classes.tagEditable : ''), 
         (classname ?? '')].join(" ").trim()}>
         <p>{tag.name}</p>
     </div>;
 }
 
 export function TagButton({ ...props }: { props?: any[] }) {
-    return <button className={classes.resumeTagAddButton} {...props}>
+    return <button className={classes.tagAddButton} {...props}>
         <p>добавить</p>
     </button>;
 }

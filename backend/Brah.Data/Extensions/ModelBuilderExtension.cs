@@ -41,11 +41,7 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Commentary>()
             .HasOne<Commentary>(c => c.Parent)
             .WithMany(c => c.Children)
-            .HasForeignKey(c => c.AuthorId);
-        modelBuilder.Entity<Commentary>()
-            .HasOne<Commentary>(c => c.Parent)
-            .WithMany(c => c.Children)
-            .HasForeignKey(c => c.AuthorId);
+            .HasForeignKey(c => c.ParentId);
         modelBuilder.Entity<Commentary>()
             .HasOne<Article>(c => c.Article)
             .WithMany(a => a.Commentaries)
@@ -77,6 +73,7 @@ public static class ModelBuilderExtension
             .HasIndex(u => u.UserName)
             .IsUnique();
     }
+    
 
     public static void PrepareData(this ModelBuilder modelBuilder)
     {
@@ -116,6 +113,7 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<ArticleTag>()
             .HasData(tags);
 
+        var defaultDateTime = new DateTime(2024, 5, 2, 16, 41, 28, DateTimeKind.Utc);
         var articles = new List<Article>()
         {
             new()
@@ -123,7 +121,7 @@ public static class ModelBuilderExtension
                 Id = 1,
                 AuthorId = articlesAuthor.Id,
                 TopicId = topics[0].Id,
-                TimePosted = DateTime.UtcNow,
+                TimePosted = defaultDateTime,
                 Karma = 15,
                 Title = "Text example",
                 Text = "example example example example example"
@@ -137,7 +135,7 @@ public static class ModelBuilderExtension
                 Id = 2,
                 AuthorId = articlesAuthor.Id,
                 TopicId = topics[0].Id,
-                TimePosted = DateTime.UtcNow,
+                TimePosted = defaultDateTime,
                 Karma = 15,
                 Title = "Text example 2",
                 Text = "example example example example example"
@@ -151,7 +149,7 @@ public static class ModelBuilderExtension
                 Id = 3,
                 AuthorId = articlesAuthor.Id,
                 TopicId = topics[0].Id,
-                TimePosted = DateTime.UtcNow,
+                TimePosted = defaultDateTime.AddDays(-1),
                 Karma = 15,
                 Title = "Text example 3",
                 Text = "example example example example example"
@@ -171,9 +169,55 @@ public static class ModelBuilderExtension
                 [
                     new { ArticleId = 1, ArticleTagId = 1 },
                     new { ArticleId = 1, ArticleTagId = 2 },
-                    new { ArticleId = 1, ArticleTagId = 3 },
-                    new { ArticleId = 1, ArticleTagId = 4 }
+                    new { ArticleId = 1, ArticleTagId = 3 }
                 ]
             );*/
+
+        modelBuilder.Entity<Commentary>().HasData(new List<Commentary>() {
+            new ()
+            {
+                Id = 1,
+                ArticleId = 1,
+                AuthorId = 1,
+                Text = "Как дела? Пока не родила",
+                TimePosted = defaultDateTime
+            },
+            new ()
+            {
+                Id = 2,
+                ParentId = 1,
+                ArticleId = 1,
+                AuthorId = 1,
+                Text = "Как дела? Пока не родила",
+                TimePosted = defaultDateTime
+            },
+            new ()
+            {
+                Id = 3,
+                ParentId = 2,
+                ArticleId = 1,
+                AuthorId = 1,
+                Text = "Как дела? Пока не родила",
+                TimePosted = defaultDateTime.AddMinutes(1)
+            },
+            new ()
+            {
+                Id = 4,
+                ParentId = 1,
+                ArticleId = 1,
+                AuthorId = 1,
+                Text = "Как дела? Пока не родила",
+                TimePosted = defaultDateTime
+            },
+            new ()
+            {
+                Id = 5,
+                ParentId = 2,
+                ArticleId = 1,
+                AuthorId = 1,
+                Text = "Как дела? Пока не родила",
+                TimePosted = defaultDateTime
+            }
+        });
     }
 }

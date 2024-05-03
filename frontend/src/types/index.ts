@@ -21,6 +21,7 @@ export type Article = {
     topic: Thread;
     tags: Tag[];
     karma: number;
+    commentaries: Commentary[];
 };
 
 export type ArticleThumbnail = {

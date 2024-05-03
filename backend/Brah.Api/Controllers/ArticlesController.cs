@@ -1,4 +1,5 @@
 using Brah.BL.Abstractions;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Brah.Api.Controllers;
@@ -15,7 +16,7 @@ public class ArticlesController(
         [FromQuery] int? take = null)
     {
         return Results.Ok(
-            await displayArticlesService.GetFiltered(
+            await displayArticlesService.GetRange(
                 title: title,
                 skip: skip,
                 take: take));
@@ -25,5 +26,11 @@ public class ArticlesController(
     public async Task<IResult> GetById(int articleId)
     {
         return Results.Ok(await displayArticlesService.GetById(articleId));
+    }
+
+    [HttpGet("top")]
+    public async Task<IResult> GetTopTen()
+    {
+        return Results.Ok(await displayArticlesService.GetTop());
     }
 }

@@ -1,10 +1,10 @@
-.resumeTag {
+.tag {
     display: flex;
     align-items: center;
     text-align: center;
     text-transform: lowercase;
 
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 1rem;
 
     width: fit-content;
     height: min-content;
@@ -19,17 +19,17 @@
     border-radius: 0.5rem;
 }
 
-.resumeTagEditable p::before {
+.tagEditable p::before {
     content: '✖ ';
 }
 
-.resumeTagAddButton {
+.tagAddButton {
     display: flex;
     align-items: center;
     text-align: center;
     text-transform: lowercase;
 
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 1rem;
 
     width: fit-content;
     height: min-content;
@@ -44,6 +44,6 @@
     border-radius: 0.5rem;
 }
 
-.resumeTagAddButton p::before {
+.tagAddButton p::before {
     content: '✚ ';
 }

@@ -9,11 +9,13 @@ public class ArticleRepository(AppDbContext context) : IRepository<Article>
 {
     public async Task<Article?> GetSingleOrDefault(Expression<Func<Article, bool>> expression)
         => await context.Articles
-            .AsNoTracking()
-            .Include(e => e.Author)
+            .Include(e => e.Author) // tracking query because of making commentary tree
             .Include(e => e.Topic)
             .Include(e => e.Tags)
-            .Include(e => e.Commentaries)
+            .Include(e => e.Commentaries
+                .Where(c => c.ParentId == null)
+                .OrderByDescending(c => c.TimePosted))
+                .ThenInclude(c => c.Children.OrderByDescending(x => x.TimePosted))
             .SingleOrDefaultAsync(expression);
 
     public IQueryable<Article> GetRange()

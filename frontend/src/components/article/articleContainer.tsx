@@ -6,7 +6,7 @@ import KarmaBlock from "../karma";
 import { Link } from "react-router-dom";
 import { TagItem } from "../tagContainer/tag";
 
-import classes from './article.module.css';
+// import classes from './article.module.css';
 
 function ArticleContainer({ article, isShort = false }: { article: Article, isShort?: boolean }) {
     return <Container>
@@ -22,9 +22,7 @@ function ArticleContainer({ article, isShort = false }: { article: Article, isSh
             <div style={{ display: "flex", flexDirection: "row", gap: "0.5rem", }}>
             {
                 article.tags.flatMap(
-                    (tag, index) => (<TagItem 
-                        classname={classes.articleTag} 
-                        key={`tag_item_${index}`} tag={tag}/>))
+                    (tag, index) => (<TagItem key={`tag_item_${index}`} tag={tag}/>))
             }
             </div>
         }

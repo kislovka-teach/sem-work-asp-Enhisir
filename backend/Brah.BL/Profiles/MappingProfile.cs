@@ -23,6 +23,7 @@ public class MappingProfile : Profile
 
         CreateMap<Article, ArticleShortResponseDto>();
         CreateMap<Article, ArticleFullResponseDto>();
+        CreateMap<Article, ArticleThumbnailResponseDto>();
         CreateMap<Commentary, CommentaryResponseDto>();
 
         CreateMap<Resume, ResumeShortResponseDto>();

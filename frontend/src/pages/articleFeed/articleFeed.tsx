@@ -11,11 +11,10 @@ import classes from "./articleFeed.module.css";
 import api from "../../config/axios";
 
 function ArticleFeedPage() {
-    const [loading, setLoading] = useState<boolean | undefined>();
+    const [loading, setLoading] = useState<boolean>(true);
     const [articles, setArticles] = useState<Article[] | null>();
 
     useEffect(() => {
-        setLoading(true);
         api.get("articles")
         .then(response => {
             console.log(response.data);

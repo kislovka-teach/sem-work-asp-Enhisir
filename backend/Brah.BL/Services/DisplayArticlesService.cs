@@ -13,15 +13,7 @@ public class DisplayArticlesService(
     IRepository<Article> articleRepository)
     : IDisplayArticlesService
 {
-    public async Task<List<ArticleShortResponseDto>> GetAll(
-        int? skip = null,
-        int? take = null)
-    {
-        var query = await GetSlice(articleRepository.GetRange(), skip, take).ToListAsync();
-        return mapper.Map<List<ArticleShortResponseDto>>(query);
-    }
-
-    public async Task<List<ArticleShortResponseDto>> GetFiltered(
+    public async Task<List<ArticleShortResponseDto>> GetRange(
         string? title = null,
         Topic? topic = null,
         List<TagDto>? tags = null,
@@ -44,6 +36,19 @@ public class DisplayArticlesService(
         var article = await articleRepository
             .GetSingleOrDefault(t => t.Id == id);
         return mapper.Map<ArticleFullResponseDto>(article);
+    }
+
+    public async Task<List<ArticleThumbnailResponseDto>> GetTop()
+    {
+        const int topSize = 10;
+
+        var top = await articleRepository.GetRange()
+            .Where(x => x.TimePosted.ToUniversalTime() >= DateTime.Now.ToUniversalTime().AddMonths(-1))
+            .OrderByDescending(x => x.Karma)
+            .Take(topSize)
+            .ToListAsync();
+        
+        return mapper.Map<List<ArticleThumbnailResponseDto>>(top);
     }
 
     private static IQueryable<Article> GetSlice(
