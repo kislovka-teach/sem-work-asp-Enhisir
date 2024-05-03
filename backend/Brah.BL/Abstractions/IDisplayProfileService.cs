@@ -4,5 +4,5 @@ namespace Brah.BL.Abstractions;
 
 public interface IDisplayProfileService
 {
-    public Task<ProfileResponseDto> GetById(int id);
+    public Task<ProfileResponseDto> GetByUserName(string userName);
 }

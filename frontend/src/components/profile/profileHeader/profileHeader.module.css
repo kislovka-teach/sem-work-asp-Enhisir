@@ -43,3 +43,7 @@
     text-wrap: nowrap;
     justify-content: center;
 }
+
+.alternative link {
+    text-decoration: none;
+}

@@ -15,6 +15,7 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<User, UserDto>().ReverseMap();
+        CreateMap<User, ProfileResponseDto>();
 
         CreateMap<Topic, TopicDto>().ReverseMap();
         CreateMap<ArticleTag, TagDto>().ReverseMap();

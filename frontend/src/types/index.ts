@@ -30,7 +30,7 @@ export type ArticleThumbnail = {
 };
 
 export type Profile = {
-    username: string;
+    userName: string;
     firstName: string;
     lastName: string;
     avatarLink: string | null;

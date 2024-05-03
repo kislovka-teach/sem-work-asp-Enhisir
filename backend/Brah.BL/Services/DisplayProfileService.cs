@@ -11,11 +11,11 @@ public class DisplayProfileService(
     IUserRepository userRepository)
     : IDisplayProfileService
 {
-    public async Task<ProfileResponseDto> GetById(int id)
+    public async Task<ProfileResponseDto> GetByUserName(string userName)
     {
         var user = await userRepository
             .GetSingleOrDefault(
-                t => t.Id == id,
+                t => t.UserName == userName,
                 includeArticles: true);
 
         if (user is null) throw new NotFoundException();
