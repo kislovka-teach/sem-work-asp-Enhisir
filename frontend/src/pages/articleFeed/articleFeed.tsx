@@ -34,7 +34,7 @@ function ArticleFeedPage() {
     if (loading) return <CustomBeatLoader />;
 
     return <div className={classes.horizontalBlock}>
-        <Feed style={{ paddingBottom: '1.5rem' }}>
+        <Feed style={{ paddingBottom: '1.5rem', width: "40vw" }}>
             {
                 articles && articles.length > 0
                     ? articles?.flatMap((item, index) => <ArticleContainer

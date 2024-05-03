@@ -34,7 +34,7 @@ function ResumeProfilePage() {
             <h2>Резюме не найдено</h2>
         </Container>;
 
-    return <Feed style={{ paddingBottom: "1.5rem" }}>
+    return <Feed style={{ paddingBottom: "1.5rem", width: "40vw" }}>
         <ResumeHeader thumb={resumeInfo} />
         {
             resumeInfo.tags != null 

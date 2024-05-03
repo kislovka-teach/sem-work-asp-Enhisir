@@ -34,7 +34,7 @@ function ArticleFullPage() {
     if (article == null) return <Container><h2>Статья не найдена</h2></Container>;
 
     return <div className={classes.horizontalBlock}>
-        <Feed>
+        <Feed style={{ width: "40vw" }}>
             <ArticleContainer article={article} />
             <CommentaryThread rootCommentaries={article.commentaries} />
         </Feed>
