@@ -75,7 +75,7 @@ export type WorkPlace = {
     grade: Grade;
     description: string;
     dateBegin: Date;
-    dateEnd: Date;
+    dateEnd: Date | null;
 };
 
 export enum Grade {

@@ -10,8 +10,9 @@ public class ResumeRepository(AppDbContext context) : IRepository<Resume>
     public async Task<Resume?> GetSingleOrDefault(Expression<Func<Resume, bool>> expression)
         => await context.Resumes
             .AsNoTracking()
+            .Include(r => r.User)
             .Include(r => r.Tags)
-            .Include(r => r.WorkPlaces)
+            .Include(r => r.WorkPlaces.OrderByDescending(w => w.DateBegin))
             .SingleOrDefaultAsync(expression);
 
     public IQueryable<Resume> GetRange()

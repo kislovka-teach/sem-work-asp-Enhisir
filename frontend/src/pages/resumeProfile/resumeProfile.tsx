@@ -8,73 +8,44 @@ import CustomBeatLoader from "../../components/beatLoader";
 import Container from "../../components/container";
 
 import classes from "./resumeProfile.module.css";
+import api from "../../config/axios";
+import { useParams } from "react-router-dom";
 
 function ResumeProfilePage() {
-    const [loading, setLoading] = useState<boolean>();
+    const { username } = useParams();
+
+    const [loading, setLoading] = useState<boolean>(true);
     const [resumeInfo, setResumeInfo] = useState<ResumeProfile | null>();
 
     useEffect(() => {
-        setLoading(true);
-        setResumeInfo({
-            header: {
-                avatarLink: 'https://sun9-79.userapi.com/impg/yqlWcDEY_zY_G76v_qtDQNxmT4xelEj7PD4eVQ/UNb379wiAtM.jpg?size=1920x1080&quality=96&sign=6fef3a6e0f180bf645c4596c8d8ae2dd&type=album',
-                firstName: "Konstantin",
-                lastName: "Rerich",
-                profession: "raspizdyai",
-                lookingForWork: true,
-                leftSalaryBorder: 100_000,
-                rightSalaryBorder: 150_000,
-                grade: Grade.Senior
-            },
-            tags: [
-                {
-                    id: 1,
-                    name: 'sdsdsd'
-                },
-                {
-                    id: 2,
-                    name: 'sdsdsd fasdsd'
-                }
-            ],
-            workPlaces: [
-                {
-                    companyName: "Dsfsdfsf",
-                    profession: "developer",
-                    grade: Grade.Intern,
-                    description: "dsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsf",
-                    dateBegin: new Date("2024-08-04"),
-                    dateEnd: new Date("2024-08-04"),
-                },
-                {
-                    companyName: "Dsfsdfsf",
-                    profession: "developer",
-                    grade: Grade.Intern,
-                    description: "dsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsf",
-                    dateBegin: new Date("2024-08-04"),
-                    dateEnd: new Date("2024-08-04"),
-                },
-                {
-                    companyName: "dsfsdfsf",
-                    profession: "developer",
-                    grade: Grade.Intern,
-                    description: "dsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsf",
-                    dateBegin: new Date("2024-08-04"),
-                    dateEnd: new Date("2024-08-04"),
-                },
-            ],
-            about: "dsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdf dsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdf dsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdf dsfsdfsfdsfsdfsfdsfsdfsfdsfsdfsfdsfsdf",
-        });
-        setLoading(false);
-    }, []);
+        api.get(`resumes/${username}`)
+            .then(response => {
+                console.log(response.data);
+                setResumeInfo(response.data);
+            })
+            .catch(() => alert("resume error!!"))
+            .finally(() => setLoading(false));
+    }, [username]);
 
     if (loading) return <CustomBeatLoader />;
 
-    if (resumeInfo == null) return <Container><h2>Резюме не найдено</h2></Container>;
+    if (resumeInfo == null)
+        return <Container style={{ width: "100%" }}>
+            <h2>Резюме не найдено</h2>
+        </Container>;
 
     return <Feed style={{ paddingBottom: "1.5rem" }}>
-        <ResumeHeader thumb={resumeInfo.header} />
-        <TagContainer tags={resumeInfo.tags} />
-        <CompanyList companies={resumeInfo.workPlaces} />
+        <ResumeHeader thumb={resumeInfo} />
+        {
+            resumeInfo.tags != null 
+            && resumeInfo.tags.length > 0 
+            && <TagContainer tags={resumeInfo.tags} />
+        }
+        {
+            resumeInfo.workPlaces != null 
+            && resumeInfo.workPlaces.length > 0 
+            && <CompanyList companies={resumeInfo.workPlaces} />
+        }
         <Container>
             <h2 className={classes.aboutHeader}>Обо мне</h2>
             <p>{resumeInfo.about}</p>

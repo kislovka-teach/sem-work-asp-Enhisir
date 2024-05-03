@@ -33,7 +33,7 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Article>()
             .HasIndex(b => b.Title)
             .HasMethod("GIN")
-            .HasOperators("gin_trgm_ops");// добавить индекс для английского
+            .HasOperators("gin_trgm_ops"); // добавить индекс для английского
 
         modelBuilder.Entity<ArticleTag>()
             .HasIndex(x => x.Name)
@@ -131,7 +131,7 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<ArticleTag>()
             .HasData(tags);
 
-        var defaultDateTime = new DateTime(2024, 5, 2, 16, 41, 28, DateTimeKind.Utc);
+        var defaultDateTime = new DateTime(2024, 5, 2, 0, 0, 0, DateTimeKind.Utc);
         var articles = new List<Article>()
         {
             new()
@@ -191,8 +191,9 @@ public static class ModelBuilderExtension
                 ]
             );*/
 
-        modelBuilder.Entity<Commentary>().HasData(new List<Commentary>() {
-            new ()
+        modelBuilder.Entity<Commentary>().HasData(new List<Commentary>()
+        {
+            new()
             {
                 Id = 1,
                 ArticleId = 1,
@@ -200,7 +201,7 @@ public static class ModelBuilderExtension
                 Text = "Как дела? Пока не родила",
                 TimePosted = defaultDateTime
             },
-            new ()
+            new()
             {
                 Id = 2,
                 ParentId = 1,
@@ -209,7 +210,7 @@ public static class ModelBuilderExtension
                 Text = "Как дела? Пока не родила",
                 TimePosted = defaultDateTime
             },
-            new ()
+            new()
             {
                 Id = 3,
                 ParentId = 2,
@@ -218,7 +219,7 @@ public static class ModelBuilderExtension
                 Text = "Как дела? Пока не родила",
                 TimePosted = defaultDateTime.AddMinutes(1)
             },
-            new ()
+            new()
             {
                 Id = 4,
                 ParentId = 1,
@@ -227,7 +228,7 @@ public static class ModelBuilderExtension
                 Text = "Как дела? Пока не родила",
                 TimePosted = defaultDateTime
             },
-            new ()
+            new()
             {
                 Id = 5,
                 ParentId = 2,
@@ -237,5 +238,48 @@ public static class ModelBuilderExtension
                 TimePosted = defaultDateTime
             }
         });
+
+        modelBuilder.Entity<Resume>()
+            .HasData(new Resume()
+            {
+                Id = 1,
+                UserId = 1,
+                Profession = "Малолетний дебил",
+                Grade = Grade.Intern,
+                LookingForWork = true,
+                LeftSalaryBorder = 100_000,
+                RightSalaryBorder = 150_000,
+                About = "ddfsdgdfdsf dsfdsfsdfs dfdsfsdfsd fdsfdsfsdfsd"
+                        + "ddfsdgdfdsf dsfdsfsdfs dfdsfsdfsd fdsfdsfsdfsd"
+                        + "ddfsdgdfdsf dsfdsfsdfs dfdsfsdfsd fdsfdsfsdfsd"
+                        + "ddfsdgdfdsf dsfdsfsdfs dfdsfsdfsd fdsfdsfsdfsd",
+            });
+
+        modelBuilder.Entity<WorkPlace>()
+            .HasData(new List<WorkPlace>()
+            {
+                new()
+                {
+                    Id = 1,
+                    ResumeId = 1,
+                    CompanyName = "Министрество не твоих собачьих дел",
+                    Profession = "Какой-то мужик",
+                    Grade = Grade.Middle,
+                    DateBegin = new DateTime(2024, 5, 2, 21, 0, 0, 0, DateTimeKind.Utc).ToUniversalTime(),
+                    DateEnd = null,
+                    Description = "См. название"
+                },
+                new()
+                {
+                    Id = 2,
+                    ResumeId = 1,
+                    CompanyName = "ИП Макима",
+                    Profession = "Собачка",
+                    Grade = Grade.Senior,
+                    DateBegin = new DateTime(2022, 5, 2, 21, 0, 0, 0, DateTimeKind.Utc).ToUniversalTime(),
+                    DateEnd = new DateTime(2023, 5, 2, 21, 0, 0, 0, DateTimeKind.Utc).ToUniversalTime(),
+                    Description = "Кусал за ногу"
+                },
+            });
     }
 }

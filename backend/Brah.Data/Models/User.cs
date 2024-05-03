@@ -19,7 +19,7 @@ public class User
     public string LastName { get; set; } = null!;
 
     [MaxLength(2000)]
-    public string? AvatarLink { get; set; } = null!;
+    public string? AvatarLink { get; set; }
 
     [MaxLength(256)]
     public string PasswordHashed { get; set; } = null!;

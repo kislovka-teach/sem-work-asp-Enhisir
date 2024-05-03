@@ -1,6 +1,7 @@
 .companyBlock {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 1.5rem;
     width: 100%;
 }
@@ -14,19 +15,20 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    max-width: 100%;
+    width: calc(75% - 1.5rem);
 }
 
 .dates {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    min-width: min-content;
-    max-width: min-content;
+    min-width: 150px;
+    width: 15%;
 }
 
 .dates p {
-    text-wrap: nowrap;
+    text-wrap: wrap;
+    font-weight: 600;
 } 
 
 .profession {

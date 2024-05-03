@@ -1,8 +1,7 @@
 using AutoMapper;
 using Brah.BL.Abstractions;
-using Brah.BL.Dtos.Meta;
-using Brah.BL.Dtos.Responses.Article;
 using Brah.BL.Dtos.Responses.Resume;
+using Brah.BL.Exceptions;
 using Brah.Data.Abstractions;
 using Brah.Data.Enums;
 using Brah.Data.Models.Resumes;
@@ -14,36 +13,39 @@ public class DisplayResumesService(
     IMapper mapper,
     IRepository<Resume> resumeRepository) : IDisplayResumesService
 {
-    public List<ResumeShortResponseDto> GetAll()
-    {
-        var query = resumeRepository.GetRange();
-        return mapper.Map<List<ResumeShortResponseDto>>(query);
-    }
-
-    public async Task<List<ArticleShortResponseDto>> GetFiltered(
+    public async Task<List<ResumeShortResponseDto>> GetRange(
         string? profession = null,
         int? leftSalaryBorder = null,
         int? rightSalaryBorder = null,
-        List<TagDto>? tags = null,
-        List<Grade>? grades = null)
+        int[]? tags = null,
+        Grade[]? grades = null)
     {
-        var query = await resumeRepository.GetRange()
-            .Where(x => profession == null || EF.Functions.TrigramsAreSimilar(x.Profession, profession))
-            .Where(x => leftSalaryBorder == null || x.LeftSalaryBorder >= leftSalaryBorder)
-            .Where(x => rightSalaryBorder == null || x.RightSalaryBorder <= rightSalaryBorder)
-            .Where(x => tags == null || tags.Count == 0 ||
-                        tags.Select(t => t.Id).Order()
-                            .SequenceEqual(x.Tags.Select(t => t.Id).Order()))
-            .Where(x => grades == null || grades.Count == 0 || grades.Contains(x.Grade))
+        var query = await resumeRepository
+            .GetRange()
+            .Where(x => profession == null 
+                        || EF.Functions.TrigramsAreSimilar(x.Profession, profession))
+            .Where(x => leftSalaryBorder == null 
+                        || x.LeftSalaryBorder >= leftSalaryBorder)
+            .Where(x => rightSalaryBorder == null 
+                        || x.RightSalaryBorder <= rightSalaryBorder)
+            .Where(x => tags == null 
+                        || tags.Length == 0 
+                        || tags.Intersect(x.Tags.Select(t => t.Id)).Count() == tags.Length)
+            .Where(x => grades == null 
+                        || grades.Length == 0 
+                        || grades.Contains(x.Grade))
             .ToListAsync();
 
-        return mapper.Map<List<ArticleShortResponseDto>>(query);
+        return mapper.Map<List<ResumeShortResponseDto>>(query);
     }
 
-    public async Task<ArticleFullResponseDto?> GetById(int id)
+    public async Task<ResumeFullResponseDto> GetByUserName(string userName)
     {
         var resume = await resumeRepository
-            .GetSingleOrDefault(t => t.Id == id);
-        return mapper.Map<ArticleFullResponseDto>(resume);
+            .GetSingleOrDefault(t => t.User.UserName == userName);
+
+        if (resume is null) throw new NotFoundException();
+        
+        return mapper.Map<ResumeFullResponseDto>(resume);
     }
 }

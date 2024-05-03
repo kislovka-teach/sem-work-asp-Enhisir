@@ -3,6 +3,7 @@ using System;
 using Brah.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Brah.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240503195004_AddedResumeData")]
+    partial class AddedResumeData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,7 +87,7 @@ namespace Brah.Data.Migrations
                             AuthorId = 1,
                             Karma = 15,
                             Text = "example example example example example example example example example example example example example example example example example example example example example example example example example",
-                            TimePosted = new DateTime(2024, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TimePosted = new DateTime(2024, 5, 2, 16, 41, 28, 0, DateTimeKind.Utc),
                             Title = "Text example",
                             TopicId = 1
                         },
@@ -94,7 +97,7 @@ namespace Brah.Data.Migrations
                             AuthorId = 1,
                             Karma = 15,
                             Text = "example example example example example example example example example example example example example example example example example example example example example example example example example",
-                            TimePosted = new DateTime(2024, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TimePosted = new DateTime(2024, 5, 2, 16, 41, 28, 0, DateTimeKind.Utc),
                             Title = "Text example 2",
                             TopicId = 1
                         },
@@ -104,7 +107,7 @@ namespace Brah.Data.Migrations
                             AuthorId = 1,
                             Karma = 15,
                             Text = "example example example example example example example example example example example example example example example example example example example example example example example example example",
-                            TimePosted = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TimePosted = new DateTime(2024, 5, 1, 16, 41, 28, 0, DateTimeKind.Utc),
                             Title = "Text example 3",
                             TopicId = 1
                         });
@@ -151,7 +154,7 @@ namespace Brah.Data.Migrations
                             ArticleId = 1,
                             AuthorId = 1,
                             Text = "Как дела? Пока не родила",
-                            TimePosted = new DateTime(2024, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc)
+                            TimePosted = new DateTime(2024, 5, 2, 16, 41, 28, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -160,7 +163,7 @@ namespace Brah.Data.Migrations
                             AuthorId = 1,
                             ParentId = 1,
                             Text = "Как дела? Пока не родила",
-                            TimePosted = new DateTime(2024, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc)
+                            TimePosted = new DateTime(2024, 5, 2, 16, 41, 28, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -169,7 +172,7 @@ namespace Brah.Data.Migrations
                             AuthorId = 1,
                             ParentId = 2,
                             Text = "Как дела? Пока не родила",
-                            TimePosted = new DateTime(2024, 5, 2, 0, 1, 0, 0, DateTimeKind.Utc)
+                            TimePosted = new DateTime(2024, 5, 2, 16, 42, 28, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -178,7 +181,7 @@ namespace Brah.Data.Migrations
                             AuthorId = 1,
                             ParentId = 1,
                             Text = "Как дела? Пока не родила",
-                            TimePosted = new DateTime(2024, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc)
+                            TimePosted = new DateTime(2024, 5, 2, 16, 41, 28, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -187,7 +190,7 @@ namespace Brah.Data.Migrations
                             AuthorId = 1,
                             ParentId = 2,
                             Text = "Как дела? Пока не родила",
-                            TimePosted = new DateTime(2024, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc)
+                            TimePosted = new DateTime(2024, 5, 2, 16, 41, 28, 0, DateTimeKind.Utc)
                         });
                 });
 
@@ -342,7 +345,7 @@ namespace Brah.Data.Migrations
                         {
                             Id = 1,
                             CompanyName = "Министрество не твоих собачьих дел",
-                            DateBegin = new DateTime(2024, 5, 2, 21, 0, 0, 0, DateTimeKind.Utc),
+                            DateBegin = new DateTime(2023, 5, 2, 21, 0, 0, 0, DateTimeKind.Utc),
                             Description = "См. название",
                             Grade = 2,
                             Profession = "Какой-то мужик",

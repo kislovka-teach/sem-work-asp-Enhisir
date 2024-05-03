@@ -9,6 +9,6 @@ public class WorkPlaceDto
     public string Profession { get; set; } = null!;
     public Grade Grade { get; set; }
     public string Description { get; set; } = null!;
-    public DateTime DateBegin { get; set; }
-    public DateTime DateEnd { get; set; }
+    public string DateBegin { get; set; } = null!;
+    public string? DateEnd { get; set; }
 }
