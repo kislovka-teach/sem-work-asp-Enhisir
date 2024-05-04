@@ -3,10 +3,28 @@ export type Author = {
     avatarLink: string;
 };
 
-export type Thread = {
+export type Topic = {
     id: number;
     name: string;
 };
+
+export enum Topics {
+    Development = 1,
+    Administration,
+    Design,
+    Management,
+    Marketing,
+    Different
+}
+
+export const TopicNames = {
+    [Topics.Development]: "Разработка",
+    [Topics.Administration]: "Администрирование",
+    [Topics.Design]: "Дизайн",
+    [Topics.Management]: "Менеджмент",
+    [Topics.Marketing]: "Маркетинг",
+    [Topics.Different]: "Разное"
+}
 
 export type Tag = {
     id: number;
@@ -18,7 +36,7 @@ export type Article = {
     author: Author;
     title: string;
     text: string;
-    topic: Thread;
+    topic: Topic;
     tags: Tag[];
     karma: number;
     commentaries: Commentary[];
@@ -54,6 +72,7 @@ export type Commentary = {
 
 export type ResumeThumbnail = {
     avatarLink: string;
+    userName: string;
     firstName: string;
     lastName: string;
     profession: string;
@@ -96,3 +115,11 @@ export enum Gender {
     Male,
     Female
 };
+
+export type TagOptionContainer = {
+    label: string,
+    value: number
+}
+
+export const TagToOptionContainer =
+    (tag: Tag): TagOptionContainer => ({ label: tag.name, value: tag.id });

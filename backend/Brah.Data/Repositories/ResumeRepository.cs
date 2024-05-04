@@ -19,6 +19,7 @@ public class ResumeRepository(AppDbContext context) : IRepository<Resume>
     {
         return context.Resumes
             .AsNoTracking()
+            .Include(r => r.User)
             .Include(r => r.Tags)
             .AsQueryable();
     }

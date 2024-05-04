@@ -1,3 +1,4 @@
 import ArticleContainer from "./articleContainer";
+import ArticleFilter from "./articleFilter";
 
-export default ArticleContainer;
+export { ArticleContainer, ArticleFilter };

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Grade, ResumeProfile } from "../../types";
+import { ResumeProfile } from "../../types";
 import Feed from "../../components/general/feed";
 import ResumeHeader from "../../components/resume/resumeHeader";
 import TagContainer from "../../components/tagContainer";
 import CompanyList from "../../components/resume/company/companyList";
 import CustomBeatLoader from "../../components/beatLoader";
-import Container from "../../components/container";
+import Container from "../../components/general/container";
 
 import classes from "./resumeProfile.module.css";
 import api from "../../config/axios";

@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { Gender, Profile } from "../../types";
+import { Profile } from "../../types";
 import CustomBeatLoader from "../../components/beatLoader";
 import Feed from "../../components/general/feed";
-import Container from "../../components/container";
+import Container from "../../components/general/container";
 import ProfileHeader from "../../components/profile/profileHeader/profileHeader";
 
-import classes from "./profile.module.css";
-import TagContainer from "../../components/tagContainer";
-import ArticleContainer from "../../components/article";
+import { ArticleContainer } from "../../components/article";
 import { useParams } from "react-router-dom";
 import api from "../../config/axios";
 
@@ -33,7 +31,6 @@ function ProfilePage({ }) {
 
     return <Feed style={{ paddingBottom: "1.5rem" }}>
         <ProfileHeader profile={profileInfo} />
-        {/* <TagContainer tags={profileInfo.tags} /> */}
         {
             profileInfo.articles && profileInfo.articles.length > 0
                 ? profileInfo.articles?.flatMap((item, index) =>

@@ -1,0 +1,19 @@
+.horizontalBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.rightSegment {
+    position: -webkit-sticky; /* for browser compatibility */
+    position: sticky;
+    top: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    width: 20vw;
+    min-width: 300px;
+    height: fit-content;
+}

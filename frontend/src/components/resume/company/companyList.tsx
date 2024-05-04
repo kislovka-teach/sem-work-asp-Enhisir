@@ -1,5 +1,5 @@
 import { WorkPlace } from "../../../types";
-import Container from "../../container";
+import Container from "../../general/container";
 import Company from "./company";
 
 function CompanyList({ companies }: { companies: WorkPlace[] })

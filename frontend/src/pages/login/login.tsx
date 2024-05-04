@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classes from './login.module.css'
 import { CustomInput } from '../../components/general';
-import Container from '../../components/container';
+import Container from '../../components/general/container';
 
 function Login() {
     const [username, setUsername] = useState<string>("");

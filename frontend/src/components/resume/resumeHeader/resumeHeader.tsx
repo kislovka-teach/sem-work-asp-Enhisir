@@ -1,20 +1,31 @@
+import { Link } from "react-router-dom";
 import { GradeToString, ResumeThumbnail, getProfileName } from "../../../types";
-import Container from "../../container";
+import Container from "../../general/container";
 
 import classes from "./resumeHeader.module.css"
 
-function ResumeHeader({ thumb }: { thumb: ResumeThumbnail }) {
+function ResumeHeader({ thumb, enableLink = false }:
+    { thumb: ResumeThumbnail, enableLink?: boolean }) {
     return <Container>
         <div className={classes.horizontalBlock}>
             <div className={classes.avatarContainer}>
                 <img src={thumb.avatarLink} />
             </div>
             <div className={classes.verticalBlock}>
-                <h1>{getProfileName(thumb)}</h1>
+                {
+                    enableLink
+                        ? <Link className="altHref" to={`/resumes/${thumb.userName}`}>
+                            <h1>{getProfileName(thumb)}</h1>
+                        </Link>
+                        : <h1>{getProfileName(thumb)}</h1>
+                }
                 <p className={classes.profession}>{thumb.profession}</p>
                 <div className={classes.resumeFooter}>
                     <div className={classes.salary}>
-                        <p>{getBeautifulNumber(thumb.leftSalaryBorder)} - {getBeautifulNumber(thumb.rightSalaryBorder)} ₽</p>
+                        <p>
+                            {`${getBeautifulNumber(thumb.leftSalaryBorder)} - 
+                            ${getBeautifulNumber(thumb.rightSalaryBorder)} ₽`}
+                        </p>
                     </div>
                     <h2>{GradeToString[thumb.grade]}</h2>
                 </div>

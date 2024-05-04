@@ -28,20 +28,14 @@ public static class ModelBuilderExtension
             .OnDelete(DeleteBehavior.SetNull);
         modelBuilder.Entity<Article>()
             .HasIndex(b => b.Title)
+            .IsUnique()
             .HasMethod("GIN")
             .HasOperators("gin_trgm_ops");
-        modelBuilder.Entity<Article>()
-            .HasIndex(b => b.Title)
-            .HasMethod("GIN")
-            .HasOperators("gin_trgm_ops"); // добавить индекс для английского
 
         modelBuilder.Entity<ArticleTag>()
             .HasIndex(x => x.Name)
             .HasMethod("GIN")
-            .HasOperators("gin_trgm_ops");
-        modelBuilder.Entity<ArticleTag>()
-            .HasIndex(x => x.Name)
-            .HasMethod("GIN")
+            .IsUnique()
             .HasOperators("gin_trgm_ops");
 
         modelBuilder.Entity<Commentary>()
@@ -73,17 +67,10 @@ public static class ModelBuilderExtension
             .HasIndex(b => b.Profession)
             .HasMethod("GIN")
             .HasOperators("gin_trgm_ops");
-        modelBuilder.Entity<Resume>()
-            .HasIndex(b => b.Profession)
-            .HasMethod("GIN")
-            .HasOperators("gin_trgm_ops");
 
         modelBuilder.Entity<ResumeTag>()
             .HasIndex(t => t.Name)
-            .HasMethod("GIN")
-            .HasOperators("gin_trgm_ops");
-        modelBuilder.Entity<ResumeTag>()
-            .HasIndex(t => t.Name)
+            .IsUnique()
             .HasMethod("GIN")
             .HasOperators("gin_trgm_ops");
 

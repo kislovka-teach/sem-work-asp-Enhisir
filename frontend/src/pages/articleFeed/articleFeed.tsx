@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Article } from "../../types";
-import ArticleContainer from "../../components/article";
+
 import PopularTagsList from "../../components/popularTagsList";
 import PopularArticlesList from "../../components/popularArticlesList";
 import CustomBeatLoader from "../../components/beatLoader";
-import Container from "../../components/container";
+import Container from "../../components/general/container";
 import Feed from "../../components/general/feed";
 
 import classes from "./articleFeed.module.css";
 import api from "../../config/axios";
 import { useSearchParams } from "react-router-dom";
-import ArticleTagSelector from "../../components/article/articleTagSelector";
+import { ArticleContainer, ArticleFilter } from "../../components/article";
 
 function ArticleFeedPage() {
     const [searchParams,] = useSearchParams();
@@ -43,7 +43,7 @@ function ArticleFeedPage() {
             }
         </Feed>
         <div className={classes.rightSegment}>
-            <ArticleTagSelector />
+            <ArticleFilter />
             <PopularTagsList />
             <PopularArticlesList />
         </div>

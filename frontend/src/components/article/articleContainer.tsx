@@ -1,12 +1,10 @@
 import Markdown from "react-markdown";
-import Container from "../container";
+import Container from "../general/container";
 import { Article } from "../../types";
 import AuthorBlock from "../authorBlock";
 import KarmaBlock from "../karma";
 import { Link } from "react-router-dom";
 import { TagItem } from "../tagContainer/tag";
-
-// import classes from './articleContainer.module.css';
 
 function ArticleContainer({ article, isShort = false }: { article: Article, isShort?: boolean }) {
     return <Container>

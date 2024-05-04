@@ -1,5 +1,5 @@
 import { Tag } from "../../types";
-import Container from "../container";
+import Container from "../general/container";
 import { TagItem, TagButton } from "./tag";
 import classes from "./tagContainer.module.css";
 

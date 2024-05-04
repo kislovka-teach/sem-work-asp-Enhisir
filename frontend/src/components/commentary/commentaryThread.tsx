@@ -1,5 +1,5 @@
 import { Commentary } from "../../types";
-import Container from "../container";
+import Container from "../general/container";
 import CommentaryBlock from "./commentary";
 
 import classes from "./commentaryThread.module.css"

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classes from './registration.module.css'
 import { CustomInput } from '../../components/general';
-import Container from '../../components/container';
+import Container from '../../components/general/container';
 
 function Registration() {
     const [username, setUsername] = useState<string>("");

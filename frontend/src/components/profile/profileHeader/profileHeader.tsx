@@ -1,7 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { Profile, getProfileName } from "../../../types";
-import Container from "../../container";
+import Container from "../../general/container";
 import classes from "./profileHeader.module.css"
 
 function ProfileHeader({ profile }: { profile: Profile }) {

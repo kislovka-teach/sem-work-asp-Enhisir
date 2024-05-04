@@ -3,6 +3,7 @@ import SearchComponent from "../search/search";
 
 import Logo from '../../../assets/logo.svg'
 import classes from "./header.module.css"
+import { TopicNames } from "../../../types";
 
 function Header() {
     return <header className={classes.header}>
@@ -13,6 +14,11 @@ function Header() {
                 </div>
                 <h1 className={classes.logoTitle}>Брах</h1>
             </Link>
+            {
+                Object.entries(TopicNames).flatMap(([key, name]: [string, string]) => (
+                    <Link to={`/articles?topic=${key}`} className={classes.headerItem}>{name}</Link>))
+            }
+            <Link to="/resumes" className={classes.headerItem}>Резюме</Link>
         </div>
         <div className={classes.midWrapper}>
             <SearchComponent />

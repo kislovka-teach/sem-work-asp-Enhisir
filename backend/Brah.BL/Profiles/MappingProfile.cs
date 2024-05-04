@@ -34,13 +34,15 @@ public class MappingProfile : Profile
             .ForMember(
                 dest => dest.Text,
                 opt => opt.MapFrom(src =>
-                    src.Text.Length >= 200 ? $"{src.Text.Substring(0, 197)}..." : src.Text)
-            );
+                    src.Text.Length >= 200 ? $"{src.Text.Substring(0, 197)}..." : src.Text));
         CreateMap<Article, ArticleFullResponseDto>();
         CreateMap<Article, ArticleThumbnailResponseDto>();
         CreateMap<Commentary, CommentaryResponseDto>();
 
         CreateMap<Resume, ResumeShortResponseDto>()
+            .ForMember(
+                dest => dest.UserName,
+                opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(
                 dest => dest.FirstName,
                 opt => opt.MapFrom(src => src.User.FirstName))
@@ -53,7 +55,11 @@ public class MappingProfile : Profile
             .ForMember(
                 dest => dest.UserName,
                 opt => opt.MapFrom(src => src.User.UserName));
-        CreateMap<Resume, ResumeFullResponseDto>().ForMember(
+        CreateMap<Resume, ResumeFullResponseDto>()
+            .ForMember(
+                dest => dest.UserName,
+                opt => opt.MapFrom(src => src.User.UserName))
+            .ForMember(
                 dest => dest.FirstName,
                 opt => opt.MapFrom(src => src.User.FirstName))
             .ForMember(

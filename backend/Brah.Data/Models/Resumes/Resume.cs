@@ -7,6 +7,14 @@ namespace Brah.Data.Models.Resumes;
 public class Resume
 {
     public int Id { get; set; }
+    
+    [Url]
+    [MaxLength(64)]
+    public string? Telegram { get; set; }
+    
+    [EmailAddress]
+    [MaxLength(320)]
+    public string? Email { get; set; }
 
     [MaxLength(200)]
     public string Profession { get; set; } = null!;
