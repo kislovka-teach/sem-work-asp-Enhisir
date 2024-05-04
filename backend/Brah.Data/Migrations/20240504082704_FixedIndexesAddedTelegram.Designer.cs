@@ -3,6 +3,7 @@ using System;
 using Brah.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Brah.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240504082704_FixedIndexesAddedTelegram")]
+    partial class FixedIndexesAddedTelegram
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -434,23 +437,6 @@ namespace Brah.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("ResumeTags");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Backend"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Frontend"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Full-Stack"
-                        });
                 });
 
             modelBuilder.Entity("Brah.Data.Models.User", b =>

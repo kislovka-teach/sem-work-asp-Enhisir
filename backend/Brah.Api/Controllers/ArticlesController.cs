@@ -11,14 +11,15 @@ public class ArticlesController(
 {
     [HttpGet]
     public async Task<IResult> Get(
-        [FromQuery] string? title = null,
+        [FromQuery] string? search = null,
         [FromQuery] int? skip = null,
         [FromQuery] int? take = null,
+        [FromQuery] int? topic = null,
         [FromQuery] int[]? tags = null)
     {
         return Results.Ok(
             await displayArticlesService.GetRange(
-                title: title,
+                title: search,
                 skip: skip,
                 take: take,
                 tags: tags));

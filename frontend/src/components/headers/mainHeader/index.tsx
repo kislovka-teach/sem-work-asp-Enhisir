@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import SearchComponent from "../search/search";
+import SearchComponent from "../../general/search/search";
 
 import Logo from '../../../assets/logo.svg'
 import classes from "./header.module.css"
 import { TopicNames } from "../../../types";
 
-function Header() {
+function MainHeader() {
     return <header className={classes.header}>
         <div className={classes.leftWrapper} >
             <Link to="/" className={classes.logoContainer}>
@@ -16,12 +16,13 @@ function Header() {
             </Link>
             {
                 Object.entries(TopicNames).flatMap(([key, name]: [string, string]) => (
-                    <Link to={`/articles?topic=${key}`} className={classes.headerItem}>{name}</Link>))
+                    <Link key={`topic_${key}`}
+                        to={`/articles?topic=${key}`} className={classes.headerItem}>{name}</Link>))
             }
             <Link to="/resumes" className={classes.headerItem}>Резюме</Link>
         </div>
         <div className={classes.midWrapper}>
-            <SearchComponent />
+            <SearchComponent baseSearchString="/articles" />
         </div>
         <div className={classes.rightWrapper} >
             <Link to="/login" className={classes.profileContainer}>
@@ -31,4 +32,4 @@ function Header() {
     </header>
 }
 
-export default Header;
+export default MainHeader;

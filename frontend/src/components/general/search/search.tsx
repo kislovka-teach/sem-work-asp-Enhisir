@@ -4,16 +4,16 @@ import CustomInput from "../input/input";
 
 import classes from './search.module.css'
 
-function SearchComponent() {
+function SearchComponent({ baseSearchString }: { baseSearchString: string}) {
     const navigate = useNavigate();
 
     const [searchParams, ] = useSearchParams();
-    const [searchString, setSearchString] = useState<string>(searchParams.get("title") ?? "");
+    const [searchString, setSearchString] = useState<string>(searchParams.get("search") ?? "");
 
-    return <form action="post" style={{ width: "100%", display: "flex", justifyContent: "center" }}
+    return <form action="post" style={{ paddingLeft: "1.5rem", paddingRight: "1.5rem", display: "flex", justifyContent: "center" }}
     onSubmit={(event) => {
         event.preventDefault();
-        navigate(`/articles?title=${searchString}`);
+        navigate( baseSearchString + `?search=${searchString}`);
         navigate(0); // для перезагрузки страницы
     }}>
         <CustomInput classname={classes.searchInput}

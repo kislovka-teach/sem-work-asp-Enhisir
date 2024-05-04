@@ -44,6 +44,12 @@
     color: #00CA00;
 }
 
+.dontLookFroWork p {
+    font-weight: bold;
+    font-size: 20pt;
+    color: #CA0000;
+}
+
 .resumeFooter {
     display: flex;
     flex-direction: row;

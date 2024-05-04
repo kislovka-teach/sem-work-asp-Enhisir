@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Tag, TagOptionContainer, TagToOptionContainer,  } from '../../types'
+import { Tag, OptionContainer, TagToOptionContainer,  } from '../../types'
 import api from "../../config/axios";
 import { useSearchParams } from "react-router-dom";
 import Container from "../general/container";
@@ -7,8 +7,8 @@ import { StyledSelect } from "../general/styledSelect";
 
 function ArticleFilter() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [avaliableOptions, setAvaliableOptions] = useState<TagOptionContainer[]>([]);
-  const [addedOptions, setAddedOptions] = useState<TagOptionContainer[]>([]);
+  const [avaliableOptions, setAvaliableOptions] = useState<OptionContainer[]>([]);
+  const [addedOptions, setAddedOptions] = useState<OptionContainer[]>([]);
   const [searchString, setSearchString] = useState<string>("");
 
   // inner function copy
@@ -25,7 +25,6 @@ function ArticleFilter() {
       );
   };
 
-
   useEffect(() => {
     api.get("/articles/tags" + (searchString ? `?name=${searchString}` : ''))
       .then(response => {
@@ -35,19 +34,19 @@ function ArticleFilter() {
 
   useEffect(() => {
     let newSearchParams: { [param: string]: any } = {};
-    if (searchParams.get("title")) newSearchParams["title"] = searchParams.get("title");
+    if (searchParams.get("search")) newSearchParams["search"] = searchParams.get("search");
     if (addedOptions.length > 0)
-      newSearchParams["tags"] = addedOptions.flatMap((item: TagOptionContainer) => item.value);
+      newSearchParams["tags"] = addedOptions.flatMap((item: OptionContainer) => item.value);
     setSearchParams(newSearchParams, { replace: true });
   }, [addedOptions]);
 
   return <Container>
-    <h3>Искать по тэгам</h3>
+    <h2>Искать по тэгам</h2>
     <StyledSelect
       multi
       values={addedOptions}
       options={avaliableOptions}
-      onChange={(values: TagOptionContainer[]) => {
+      onChange={(values: OptionContainer[]) => {
         console.log("!");
         console.log(values);
         setAddedOptions(values)
@@ -59,10 +58,8 @@ function ArticleFilter() {
 
 export default ArticleFilter;
 
-export const getByPath = (object: any, path: any) => {
-  if (!path) {
-    return;
-  }
+const getByPath = (object: any, path: any) => {
+  if (!path) return;
 
   return path.split('.').reduce((acc: any, value: any) => acc[value], object);
 };

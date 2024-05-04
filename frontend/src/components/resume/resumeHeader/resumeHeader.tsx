@@ -21,12 +21,16 @@ function ResumeHeader({ thumb, enableLink = false }:
                 }
                 <p className={classes.profession}>{thumb.profession}</p>
                 <div className={classes.resumeFooter}>
-                    <div className={classes.salary}>
-                        <p>
-                            {`${getBeautifulNumber(thumb.leftSalaryBorder)} - 
+                    {
+                        thumb.lookingForWork
+                            ? <div className={classes.salary}>
+                                <p>
+                                    {`${getBeautifulNumber(thumb.leftSalaryBorder)} - 
                             ${getBeautifulNumber(thumb.rightSalaryBorder)} ₽`}
-                        </p>
-                    </div>
+                                </p>
+                            </div>
+                            : <div className={classes.dontLookFroWork}><p>Не ищу работу</p></div>
+                    }
                     <h2>{GradeToString[thumb.grade]}</h2>
                 </div>
             </div>

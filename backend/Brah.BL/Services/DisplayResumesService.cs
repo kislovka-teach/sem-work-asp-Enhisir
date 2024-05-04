@@ -18,22 +18,21 @@ public class DisplayResumesService(
         int? leftSalaryBorder = null,
         int? rightSalaryBorder = null,
         int[]? tags = null,
-        Grade[]? grades = null)
+        Grade? grade = null)
     {
         var query = await resumeRepository
             .GetRange()
+            .Where(x => x.LookingForWork)
             .Where(x => profession == null 
                         || EF.Functions.TrigramsAreSimilar(x.Profession, profession))
             .Where(x => leftSalaryBorder == null 
-                        || x.LeftSalaryBorder >= leftSalaryBorder)
+                        || x.RightSalaryBorder >= leftSalaryBorder)
             .Where(x => rightSalaryBorder == null 
-                        || x.RightSalaryBorder <= rightSalaryBorder)
+                        || x.LeftSalaryBorder <= rightSalaryBorder)
             .Where(x => tags == null 
                         || tags.Length == 0 
                         || tags.Intersect(x.Tags.Select(t => t.Id)).Count() == tags.Length)
-            .Where(x => grades == null 
-                        || grades.Length == 0 
-                        || grades.Contains(x.Grade))
+            .Where(x => grade == null || x.Grade == grade)
             .ToListAsync();
 
         return mapper.Map<List<ResumeShortResponseDto>>(query);

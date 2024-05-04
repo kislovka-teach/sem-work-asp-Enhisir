@@ -7,23 +7,24 @@ namespace Brah.Api.Controllers;
 
 [Route("[controller]")]
 public class ResumesController(
-    IDisplayResumesService displayResumesService
+    IDisplayResumesService displayResumesService,
+    ISearchResumeTagsService searchResumeTagsService
 ) : ControllerBase
 {
     [HttpGet]
     public async Task<IResult> Get(
-        string? profession = null,
+        string? search = null,
         int? leftSalaryBorder = null,
         int? rightSalaryBorder = null,
         int[]? tags = null,
-        Grade[]? grades = null)
+        Grade? grade = null)
     {
         var list = await displayResumesService.GetRange(
-            profession: profession,
+            profession: search,
             leftSalaryBorder: leftSalaryBorder,
             rightSalaryBorder: rightSalaryBorder,
             tags: tags,
-            grades: grades);
+            grade: grade);
         return Results.Ok(list);
     }
     
@@ -41,5 +42,13 @@ public class ResumesController(
         {
             return Results.NotFound();
         }
+    }
+    
+    [HttpGet("tags")]
+    public async Task<IResult> SearchArticleTags([FromQuery] string name)
+    {
+        return Results.Ok(
+            await searchResumeTagsService
+                .GetSimilarTags(name));
     }
 }

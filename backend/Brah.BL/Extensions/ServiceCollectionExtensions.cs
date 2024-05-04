@@ -14,6 +14,7 @@ public static class ServiceCollectionExtensions
             .AddScoped<ISearchArticleTagsService, SearchArticleTagsService>()
             .AddScoped<IDisplayProfileService, DisplayProfileService>()
             .AddScoped<IDisplayResumesService, DisplayResumesService>()
+            .AddScoped<ISearchResumeTagsService, SearchResumeTagsService>()
             .AddScoped<IAuthService, AuthService>()
             .AddScoped<IPasswordHasherService, PasswordHasherService>();
     }

@@ -14,7 +14,7 @@ import classes from "./resumeFeed.module.css";
 import api from "../../config/axios";
 
 function ResumeFeedPage() {
-    // const [searchParams,] = useSearchParams();
+    const [searchParams,] = useSearchParams();
     const [loading, setLoading] = useState<boolean>(true);
     const [resumes, setResumes] = useState<ResumeThumbnail[] | null>();
 
@@ -33,14 +33,14 @@ function ResumeFeedPage() {
     // }, [searchParams]);
 
     useEffect(() => {
-        api.get("resumes")
+        api.get("/resumes", { params: searchParams })
             .then(response => {
                 console.log(response.data);
                 setResumes(response.data);
             })
             .catch(() => console.log("error while making a response"))
             .finally(() => setLoading(false));
-    }, []);
+    }, [searchParams]);
 
     if (loading) return <CustomBeatLoader />;
 

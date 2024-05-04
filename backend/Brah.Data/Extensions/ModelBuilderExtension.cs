@@ -28,14 +28,15 @@ public static class ModelBuilderExtension
             .OnDelete(DeleteBehavior.SetNull);
         modelBuilder.Entity<Article>()
             .HasIndex(b => b.Title)
-            .IsUnique()
             .HasMethod("GIN")
             .HasOperators("gin_trgm_ops");
 
         modelBuilder.Entity<ArticleTag>()
+            .HasIndex(x => x.Name, "unique_article_tag_constraint")
+            .IsUnique();
+        modelBuilder.Entity<ArticleTag>()
             .HasIndex(x => x.Name)
             .HasMethod("GIN")
-            .IsUnique()
             .HasOperators("gin_trgm_ops");
 
         modelBuilder.Entity<Commentary>()
@@ -69,8 +70,10 @@ public static class ModelBuilderExtension
             .HasOperators("gin_trgm_ops");
 
         modelBuilder.Entity<ResumeTag>()
+            .HasIndex(t => t.Name, "unique_resume_tag_constraint")
+            .IsUnique();
+        modelBuilder.Entity<ResumeTag>()
             .HasIndex(t => t.Name)
-            .IsUnique()
             .HasMethod("GIN")
             .HasOperators("gin_trgm_ops");
 
@@ -166,18 +169,6 @@ public static class ModelBuilderExtension
         };
         modelBuilder.Entity<Article>().HasData(articles);
 
-        /*modelBuilder.Entity<Article>()
-            .HasMany<ArticleTag>()
-            .WithMany()
-            .UsingEntity(j => j.ToTable("article_tag"))
-            .HasData(
-                [
-                    new { ArticleId = 1, ArticleTagId = 1 },
-                    new { ArticleId = 1, ArticleTagId = 2 },
-                    new { ArticleId = 1, ArticleTagId = 3 }
-                ]
-            );*/
-
         modelBuilder.Entity<Commentary>().HasData(new List<Commentary>()
         {
             new()
@@ -268,5 +259,14 @@ public static class ModelBuilderExtension
                     Description = "Кусал за ногу"
                 },
             });
+        
+        var resumeTags = new List<ResumeTag>()
+        {
+            new() { Id = 1, Name = "Backend" },
+            new() { Id = 2, Name = "Frontend" },
+            new() { Id = 3, Name = "Full-Stack" },
+        };
+        modelBuilder.Entity<ResumeTag>()
+            .HasData(resumeTags);
     }
 }

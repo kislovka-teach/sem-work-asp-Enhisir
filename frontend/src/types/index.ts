@@ -116,10 +116,10 @@ export enum Gender {
     Female
 };
 
-export type TagOptionContainer = {
+export type OptionContainer = {
     label: string,
-    value: number
+    value: any
 }
 
 export const TagToOptionContainer =
-    (tag: Tag): TagOptionContainer => ({ label: tag.name, value: tag.id });
+    (tag: Tag): OptionContainer => ({ label: tag.name, value: tag.id });

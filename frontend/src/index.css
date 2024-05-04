@@ -112,12 +112,6 @@ button:hover {
   border-color: #709fb5;
 }
 
-/* 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-
 button:disabled {
   background: #EEF0F7;
   color: #A5A5A5;
@@ -131,16 +125,3 @@ button.alternative {
 button.alternative:hover {
   border-color: var(--border-color);
 }
-
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */

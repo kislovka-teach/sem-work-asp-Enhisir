@@ -1,0 +1,15 @@
+.horizontalBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.priceRow {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    width: 100%;
+    align-items: center;
+}
