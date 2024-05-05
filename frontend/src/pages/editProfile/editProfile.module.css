@@ -1,0 +1,53 @@
+.sizedContainer {
+    width: 400px;
+    height: min-content;
+}
+
+.error {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-weight: 600;
+    font-size: 10pt;
+}
+
+.verticalGroup {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.horizontalGroup {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.avatarContainer {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.avatarContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.avatarButtonGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}

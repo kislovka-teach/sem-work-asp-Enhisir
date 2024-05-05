@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Brah.BL.Dtos.Requests;
+namespace Brah.BL.Dtos.Requests.Auth;
 
 public class LoginRequestDto
 {

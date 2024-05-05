@@ -11,23 +11,20 @@ import api from "../../config/axios";
 import { useAuth } from "../../auth";
 
 function MyProfilePage({}) {
-  const { userLoading } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
   const [profileInfo, setProfileInfo] = useState<Profile | null>();
 
   useEffect(() => {
-    if (userLoading) return;
-
     api
-      .get(`users/me`)
+      .get(`profile`)
       .then((response) => {
         console.log(response.data);
         setProfileInfo(response.data);
       })
       .catch(() => navigate("/login"))
       .finally(() => setLoading(false));
-  }, [userLoading]);
+  }, []);
 
   if (loading) return <CustomBeatLoader />;
 
@@ -39,8 +36,8 @@ function MyProfilePage({}) {
     );
 
   return (
-    <Feed style={{ paddingBottom: "1.5rem" }}>
-      <ProfileThumbnail profile={profileInfo} />
+    <Feed style={{ paddingBottom: "1.5rem", width: "40vw", minWidth: "min-content" }}>
+      <ProfileThumbnail profile={profileInfo} isMe={true} />
       {profileInfo.articles && profileInfo.articles.length > 0 ? (
         profileInfo.articles?.flatMap((item, index) => (
           <ArticleContainer

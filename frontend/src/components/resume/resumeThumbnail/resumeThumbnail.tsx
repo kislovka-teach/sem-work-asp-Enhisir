@@ -7,6 +7,7 @@ import {
 import Container from "../../general/container";
 
 import classes from "./resumeThumbnail.module.css";
+import { GetAvatar } from "../../../services/image";
 
 function ResumeThumbnail({
   thumb,
@@ -19,15 +20,15 @@ function ResumeThumbnail({
     <Container>
       <div className={classes.horizontalBlock}>
         <div className={classes.avatarContainer}>
-          <img src={thumb.avatarLink} />
+          <img src={GetAvatar(thumb.avatarLink)} />
         </div>
-        <div className={classes.verticalBlock}>
+        <div className={classes.verticalBlock} style={{ justifyContent: "center"}}>
           {enableLink ? (
             <Link className="altHref" to={`/resumes/${thumb.userName}`}>
-              <h1>{getProfileName(thumb)}</h1>
+              <h2>{getProfileName(thumb)}</h2>
             </Link>
           ) : (
-            <h1>{getProfileName(thumb)}</h1>
+            <h2>{getProfileName(thumb)}</h2>
           )}
           <p className={classes.profession}>{thumb.profession}</p>
           <div className={classes.resumeFooter}>

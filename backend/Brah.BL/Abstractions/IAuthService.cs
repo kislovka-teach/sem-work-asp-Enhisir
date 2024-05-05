@@ -1,4 +1,5 @@
 using Brah.BL.Dtos.Requests;
+using Brah.BL.Dtos.Requests.Auth;
 using Brah.BL.Dtos.Responses.Auth;
 
 namespace Brah.BL.Abstractions;

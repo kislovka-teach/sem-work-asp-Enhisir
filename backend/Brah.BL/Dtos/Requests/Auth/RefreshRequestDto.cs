@@ -1,4 +1,4 @@
-namespace Brah.BL.Dtos.Requests;
+namespace Brah.BL.Dtos.Requests.Auth;
 
 public class RefreshRequestDto
 {

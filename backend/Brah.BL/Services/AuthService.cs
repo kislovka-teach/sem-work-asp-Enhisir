@@ -3,6 +3,7 @@ using AutoMapper;
 using Brah.BL.Abstractions;
 using Brah.BL.Dtos.Meta;
 using Brah.BL.Dtos.Requests;
+using Brah.BL.Dtos.Requests.Auth;
 using Brah.BL.Dtos.Responses.Auth;
 using Brah.BL.Exceptions;
 using Brah.Data.Abstractions;

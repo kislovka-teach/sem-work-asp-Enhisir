@@ -37,7 +37,7 @@ function MainHeader() {
       <div className={classes.rightWrapper}>
         {(!userLoading && user && (
           <>
-            <Link to={`/users/me`} className={classes.headerItem}>
+            <Link to={`/profile`} className={classes.headerItem}>
               {user.userName}
             </Link>
             <span className={classes.headerItem} onClick={logout}>

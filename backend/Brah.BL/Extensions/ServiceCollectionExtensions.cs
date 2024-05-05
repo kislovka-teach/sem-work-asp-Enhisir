@@ -1,4 +1,5 @@
 using Brah.BL.Abstractions;
+using Brah.BL.Dtos.Requests.Profile;
 using Brah.BL.Profiles;
 using Brah.BL.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +19,9 @@ public static class ServiceCollectionExtensions
             .AddScoped<IDisplayResumesService, DisplayResumesService>()
             .AddScoped<ISearchResumeTagsService, SearchResumeTagsService>()
             .AddScoped<IAuthService, AuthService>()
-            .AddScoped<IPasswordHasherService, PasswordHasherService>();
+            .AddScoped<IPasswordHasherService, PasswordHasherService>()
+            .AddScoped<IEditProfileService, EditProfileService>()
+            .AddScoped<IMinioService, MinioService>();
     }
 
     public static IServiceCollection AddAutoMapperConfigured(this IServiceCollection serviceCollection)

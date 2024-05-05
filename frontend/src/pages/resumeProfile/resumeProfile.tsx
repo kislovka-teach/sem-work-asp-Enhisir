@@ -38,7 +38,7 @@ function ResumeProfilePage() {
     );
 
   return (
-    <Feed style={{ paddingBottom: "1.5rem", width: "40vw" }}>
+    <Feed style={{ paddingBottom: "1.5rem", width: "40vw", minWidth: "min-content" }}>
       <ResumeThumbnail thumb={resumeInfo} />
       {resumeInfo.tags != null && resumeInfo.tags.length > 0 && (
         <TagContainer tags={resumeInfo.tags} />

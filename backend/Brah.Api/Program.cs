@@ -1,6 +1,7 @@
 using Brah.Api.Extensions;
 using Brah.BL.Extensions;
 using Brah.Data.Extensions;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,9 @@ builder.Services
 builder.Services.AddCors();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerConfigured();
+
+builder.Services.AddMinioConfigured();
 
 var app = builder.Build();
 

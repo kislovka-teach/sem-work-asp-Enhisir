@@ -15,8 +15,15 @@ import ResumeProfilePage from "./pages/resumeProfile";
 
 import "./App.css";
 import MyProfilePage from "./pages/myProfile/myProfile";
+import { useAuth } from "./auth";
+import CustomBeatLoader from "./components/beatLoader";
+import EditProfilePage from "./pages/editProfile/editProfile";
 
 function App() {
+  const { userLoading } = useAuth();
+
+  if (userLoading) return <CustomBeatLoader />;
+
   return (
     <Routes>
       <Route
@@ -56,7 +63,8 @@ function App() {
                   path="/articles/:articleId"
                   element={<ArticleFullPage />}
                 />
-                <Route path="/users/me" element={<MyProfilePage />} />
+                <Route path="/profile" element={<MyProfilePage />} />
+                <Route path="/profile/edit" element={<EditProfilePage />} />
                 <Route path="/users/:username" element={<ProfilePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />

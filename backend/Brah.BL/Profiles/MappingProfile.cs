@@ -1,6 +1,8 @@
 using AutoMapper;
 using Brah.BL.Dtos.Meta;
 using Brah.BL.Dtos.Requests;
+using Brah.BL.Dtos.Requests.Auth;
+using Brah.BL.Dtos.Requests.Profile;
 using Brah.BL.Dtos.Responses;
 using Brah.BL.Dtos.Responses.Article;
 using Brah.BL.Dtos.Responses.Resume;
@@ -24,6 +26,8 @@ public class MappingProfile : Profile
         CreateMap<RegisterRequestDto, User>()
             .ForMember(dest => dest.Role,
                 opt => opt.MapFrom(src => Role.User));
+        CreateMap<EditProfileRequestDto, User>()
+            .ForAllMembers(opts => opts.Condition((_, _, srcMember) => srcMember != null));;
 
         CreateMap<Topic, TopicDto>().ReverseMap();
         CreateMap<ArticleTag, TagDto>().ReverseMap();

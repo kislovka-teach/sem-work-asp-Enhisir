@@ -35,7 +35,7 @@ function ProfilePage({}) {
     );
 
   return (
-    <Feed style={{ paddingBottom: "1.5rem" }}>
+    <Feed style={{ paddingBottom: "1.5rem", width: "40vw", minWidth: "min-content" }}>
       <ProfileThumbnail profile={profileInfo} />
       {profileInfo.articles && profileInfo.articles.length > 0 ? (
         profileInfo.articles?.flatMap((item, index) => (

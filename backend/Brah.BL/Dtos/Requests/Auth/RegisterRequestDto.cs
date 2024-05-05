@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Brah.BL.Dtos.Requests;
+namespace Brah.BL.Dtos.Requests.Auth;
 
 public class RegisterRequestDto
 {
@@ -17,6 +17,7 @@ public class RegisterRequestDto
     public string LastName { get; set; } = null!;
 
     [Required]
+    [MinLength(6)]
     [MaxLength(64)]
     public string Password { get; set; } = null!;
 }
