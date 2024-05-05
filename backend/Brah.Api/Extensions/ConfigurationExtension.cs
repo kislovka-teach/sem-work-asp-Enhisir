@@ -8,7 +8,7 @@ public static class ConfigurationExtension
 {
     public static IServiceCollection AddJwtConfigured(this IServiceCollection services)
     {
-        var config = 
+        var config =
             services.BuildServiceProvider()
             .GetService<IConfiguration>()!;
 

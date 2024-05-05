@@ -1,43 +1,43 @@
 .karmaBlock {
-    display: flex;
-    flex-direction: row;
-    align-items: bottom;
-    gap: 0.25rem;
-    font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: bottom;
+  gap: 0.25rem;
+  font-weight: bold;
 }
 
 .arrowButton {
-    width: 20px;
-    height: 20px;
-    font-size: 20px;
-    line-height: 20px;
-    padding: 1px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 1px;
 
-    text-align: center;
-    user-select: none;
+  text-align: center;
+  user-select: none;
 
-    border-width: 1px;
-    border-radius: 5px;
-    border-style: solid;
-    border-color: #d9d9d900;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #d9d9d900;
 }
 
 .arrowButton:hover {
-    border-color: var(--border-color);
+  border-color: var(--border-color);
 }
 
 .arrowButton:active {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .positive {
-    color: #7BFF7B;
+  color: #7bff7b;
 }
 
 .negative {
-    color: #FF7B7B;
+  color: #ff7b7b;
 }
 
 .neutral {
-    color: #D9D9D9;
+  color: #d9d9d9;
 }

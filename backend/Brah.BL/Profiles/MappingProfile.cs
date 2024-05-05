@@ -18,7 +18,9 @@ public class MappingProfile : Profile
     {
         CreateMap<User, UserDto>();
         CreateMap<User, UserThumbnailDto>();
-        CreateMap<User, ProfileResponseDto>();
+        CreateMap<User, ProfileResponseDto>()
+            .ForMember(dest => dest.HasResume,
+                opt => opt.MapFrom(src => src.Resume != null));
         CreateMap<RegisterRequestDto, User>()
             .ForMember(dest => dest.Role,
                 opt => opt.MapFrom(src => Role.User));

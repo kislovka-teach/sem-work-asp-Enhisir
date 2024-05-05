@@ -1,9 +1,9 @@
 .horizontalBlock {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .aboutHeader {
-    color: #686868;
+  color: #686868;
 }

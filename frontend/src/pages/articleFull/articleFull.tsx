@@ -12,37 +12,44 @@ import Feed from "../../components/general/feed";
 import classes from "./articleFull.module.css";
 import api from "../../config/axios";
 
-
 function ArticleFullPage() {
-    const { articleId } = useParams();
-    
-    const [articleLoading, setArticleLoading] = useState<boolean>(true);
-    const [article, setArticle] = useState<Article | null>(null);
+  const { articleId } = useParams();
 
-    useEffect(() => {
-        api.get("articles/" + articleId)
-        .then(response => {
-            console.log(response.data);
-            setArticle(response.data);
-        })
-        .catch(() => alert("error!!!"))
-        .finally(() => setArticleLoading(false));
-    }, [articleId]);
+  const [articleLoading, setArticleLoading] = useState<boolean>(true);
+  const [article, setArticle] = useState<Article | null>(null);
 
-    if (articleLoading) return <CustomBeatLoader />;
+  useEffect(() => {
+    api
+      .get("articles/" + articleId)
+      .then((response) => {
+        console.log(response.data);
+        setArticle(response.data);
+      })
+      .catch(() => alert("error!!!"))
+      .finally(() => setArticleLoading(false));
+  }, [articleId]);
 
-    if (article == null) return <Container><h2>Статья не найдена</h2></Container>;
+  if (articleLoading) return <CustomBeatLoader />;
 
-    return <div className={classes.horizontalBlock}>
-        <Feed style={{ width: "40vw" }}>
-            <ArticleContainer article={article} />
-            <CommentaryThread rootCommentaries={article.commentaries} />
-        </Feed>
-        <div className={classes.rightSegment}>
-            <PopularTagsList />
-            <PopularArticlesList />
-        </div>
-    </div>;
+  if (article == null)
+    return (
+      <Container>
+        <h2>Статья не найдена</h2>
+      </Container>
+    );
+
+  return (
+    <div className={classes.horizontalBlock}>
+      <Feed style={{ width: "40vw" }}>
+        <ArticleContainer article={article} />
+        <CommentaryThread rootCommentaries={article.commentaries} />
+      </Feed>
+      <div className={classes.rightSegment}>
+        <PopularTagsList />
+        <PopularArticlesList />
+      </div>
+    </div>
+  );
 }
 
 export default ArticleFullPage;

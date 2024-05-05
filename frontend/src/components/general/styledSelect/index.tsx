@@ -1,27 +1,26 @@
 import Select from "react-dropdown-select";
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const StyledSelect = styled(Select)`
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   border-color: var(--border-color);
-  color: #4A4A4A;
+  color: #4a4a4a;
 
   .react-dropdown-select-clear,
   .react-dropdown-select-dropdown-handle {
-    color: #4A4A4A;
+    color: #4a4a4a;
   }
 
   .react-dropdown-select-option {
-    
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
     background-color: var(--accent-color);
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: 600;
   }
 
   .react-dropdown-select-input {
-    color: #4A4A4A;
+    color: #4a4a4a;
   }
 
   .react-dropdown-select-dropdown {
@@ -34,19 +33,19 @@ export const StyledSelect = styled(Select)`
     left: 0;
     width: 100%;
     padding: 0;
-    
-    background-color: #FAFAFA;
-    color: #4A4A4A !important;
+
+    background-color: #fafafa;
+    color: #4a4a4a !important;
     border: 1px solid var(--border-color);
     box-shadow: none;
   }
 
   .react-dropdown-select-item {
-    color: #4A4A4A;
+    color: #4a4a4a;
     border-bottom: 1px solid var(--border-color);
-       
+
     :hover {
-       color: black;
+      color: black;
     }
   }
 

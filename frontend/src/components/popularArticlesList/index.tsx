@@ -1,3 +1,3 @@
-import PopularArticlesList from './popularArticlesList'
+import PopularArticlesList from "./popularArticlesList";
 
 export default PopularArticlesList;

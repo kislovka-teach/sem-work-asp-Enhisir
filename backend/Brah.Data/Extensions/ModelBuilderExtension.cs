@@ -259,7 +259,7 @@ public static class ModelBuilderExtension
                     Description = "Кусал за ногу"
                 },
             });
-        
+
         var resumeTags = new List<ResumeTag>()
         {
             new() { Id = 1, Name = "Backend" },

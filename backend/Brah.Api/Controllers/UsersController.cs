@@ -1,5 +1,6 @@
 using Brah.BL.Abstractions;
 using Brah.BL.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Brah.Api.Controllers;
@@ -14,9 +15,26 @@ public class UsersController(
     {
         try
         {
-            var profileResponseDto = 
+            var profileResponseDto =
                 await displayProfileService
                     .GetByUserName(userName);
+            return Results.Ok(profileResponseDto);
+        }
+        catch (NotFoundException e)
+        {
+            return Results.NotFound();
+        }
+    }
+
+    [Authorize]
+    [HttpGet("me")]
+    public async Task<IResult> GetMyProfile()
+    {
+        try
+        {
+            var profileResponseDto =
+                await displayProfileService
+                    .GetByUserName(User.Identity!.Name!);
             return Results.Ok(profileResponseDto);
         }
         catch (NotFoundException e)

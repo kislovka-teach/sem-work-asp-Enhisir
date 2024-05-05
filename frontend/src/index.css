@@ -1,11 +1,11 @@
 :root {
   --header-height: 5rem;
   --sidebar-width: 19rem;
-  --background-color: #F1F5F9;
+  --background-color: #f1f5f9;
   --text-color: black;
-  --accent-color: #8ECAE6;
+  --accent-color: #8ecae6;
   --hover-color: #5b8192;
-  --border-color: #D9D9D9;
+  --border-color: #d9d9d9;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -26,7 +26,6 @@
 :root * {
   box-sizing: border-box;
 }
-
 
 .altHref {
   color: black;
@@ -88,8 +87,8 @@ p {
   width: fit-content;
   height: min-content;
 
-  background: #EEF0F7;
-  color: #A5A5A5;
+  background: #eef0f7;
+  color: #a5a5a5;
 
   font-style: normal;
   font-weight: 600;
@@ -103,7 +102,7 @@ button {
   font-size: 1rem;
   font-weight: 600;
   font-family: inherit;
-  background-color: #8ECAE6;
+  background-color: #8ecae6;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -113,13 +112,13 @@ button:hover {
 }
 
 button:disabled {
-  background: #EEF0F7;
-  color: #A5A5A5;
+  background: #eef0f7;
+  color: #a5a5a5;
 }
 
 button.alternative {
-  background: #EEF0F7;
-  color: #A5A5A5;
+  background: #eef0f7;
+  color: #a5a5a5;
 }
 
 button.alternative:hover {

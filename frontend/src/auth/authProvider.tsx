@@ -1,19 +1,17 @@
-import { useState, createContext, useEffect } from 'react'
-import { UserThumbnail } from '../types';
-import api from '../config/axios';
+import { useState, createContext, useEffect } from "react";
+import { UserThumbnail } from "../types";
+import api from "../config/axios";
 
 const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {  
+const AuthProvider = ({ children }) => {
   const [userLoading, setUserLoading] = useState<boolean>(true);
   const [user, setUser] = useState<UserThumbnail | null>(null);
   const [refresh, setRefresh] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (localStorage.getItem("refresh_token"))
-      refreshAuthInfo();
-    else
-      logout();
+    if (localStorage.getItem("refresh_token")) refreshAuthInfo();
+    else logout();
   }, []);
 
   const storeAuthInfo = (info: AuthInfo) => {
@@ -41,20 +39,23 @@ const AuthProvider = ({ children }) => {
     setUserLoading(false);
     clearTimeout(refresh ?? undefined);
     setRefresh(null);
-  }
+  };
 
   const refreshAuthInfo = () => {
     const refreshToken = localStorage.getItem("refresh_token");
 
-    api.post("auth/refresh", { refreshToken: refreshToken })
-      .then(response => storeAuthInfo(response.data))
+    api
+      .post("auth/refresh", { refreshToken: refreshToken })
+      .then((response) => storeAuthInfo(response.data))
       .catch(() => {
         logout();
       });
   };
 
   return (
-    <AuthContext.Provider value={{ userLoading, setUserLoading, user, storeAuthInfo, logout }}>
+    <AuthContext.Provider
+      value={{ userLoading, setUserLoading, user, storeAuthInfo, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -65,6 +66,6 @@ type AuthInfo = {
   accessToken: string;
   refreshToken: string;
   accessTokenExpires: number;
-}
+};
 
 export { AuthContext, AuthProvider };

@@ -16,7 +16,7 @@ public class DisplayProfileService(
         var user = await userRepository
             .GetSingleOrDefault(
                 t => t.UserName == userName,
-                includeArticles: true);
+                includeArticles: true, includeResume: true);
 
         if (user is null) throw new NotFoundException();
         return mapper.Map<ProfileResponseDto>(user);

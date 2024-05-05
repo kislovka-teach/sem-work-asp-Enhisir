@@ -88,7 +88,7 @@ public class AuthService(
             UserName = identity.Name!,
             Role = Enum.Parse<Role>(identity.FindFirst(identity.RoleClaimType)!.Value)
         };
-        
+
         return new AuthResponseDto
         {
             User = userThumbnail,

@@ -23,14 +23,14 @@ public class DisplayResumesService(
         var query = await resumeRepository
             .GetRange()
             .Where(x => x.LookingForWork)
-            .Where(x => profession == null 
+            .Where(x => profession == null
                         || EF.Functions.TrigramsAreSimilar(x.Profession, profession))
-            .Where(x => leftSalaryBorder == null 
+            .Where(x => leftSalaryBorder == null
                         || x.RightSalaryBorder >= leftSalaryBorder)
-            .Where(x => rightSalaryBorder == null 
+            .Where(x => rightSalaryBorder == null
                         || x.LeftSalaryBorder <= rightSalaryBorder)
-            .Where(x => tags == null 
-                        || tags.Length == 0 
+            .Where(x => tags == null
+                        || tags.Length == 0
                         || tags.Intersect(x.Tags.Select(t => t.Id)).Count() == tags.Length)
             .Where(x => grade == null || x.Grade == grade)
             .ToListAsync();
@@ -44,7 +44,7 @@ public class DisplayResumesService(
             .GetSingleOrDefault(t => t.User.UserName == userName);
 
         if (resume is null) throw new NotFoundException();
-        
+
         return mapper.Map<ResumeFullResponseDto>(resume);
     }
 }

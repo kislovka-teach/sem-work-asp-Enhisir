@@ -5,7 +5,7 @@ namespace Brah.BL.Dtos.Responses.Resume;
 public class ResumeFullResponseDto
 {
     public int Id { get; set; }
-    
+
     public string? Telegram { get; set; }
     public string? Email { get; set; }
 

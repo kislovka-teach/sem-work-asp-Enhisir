@@ -11,6 +11,6 @@ public interface IDisplayResumesService
         int? rightSalaryBorder = null,
         int[]? tags = null,
         Grade? grade = null);
-    
+
     public Task<ResumeFullResponseDto> GetByUserName(string userName);
 }

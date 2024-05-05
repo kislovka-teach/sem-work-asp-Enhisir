@@ -1,7 +1,7 @@
 .horizontalBlock {
-    display: flex;
-    flex-direction: row;
-    gap: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
 
-    width: 100%;
+  width: 100%;
 }

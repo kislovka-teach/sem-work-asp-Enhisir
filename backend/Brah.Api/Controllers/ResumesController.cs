@@ -27,7 +27,7 @@ public class ResumesController(
             grade: grade);
         return Results.Ok(list);
     }
-    
+
     [HttpGet("{userName}")]
     public async Task<IResult> GetByUserName(string userName)
     {
@@ -43,7 +43,7 @@ public class ResumesController(
             return Results.NotFound();
         }
     }
-    
+
     [HttpGet("tags")]
     public async Task<IResult> SearchArticleTags([FromQuery] string name)
     {

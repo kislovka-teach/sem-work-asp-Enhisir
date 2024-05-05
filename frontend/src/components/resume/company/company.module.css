@@ -1,53 +1,53 @@
 .companyBlock {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1.5rem;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .borderTop {
-    border-top: 1px solid #d9d9d9;
-    padding-top: 1rem;
+  border-top: 1px solid #d9d9d9;
+  padding-top: 1rem;
 }
 
 .baseTextBlock {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    width: calc(75% - 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: calc(75% - 1.5rem);
 }
 
 .dates {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    min-width: 150px;
-    width: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 150px;
+  width: 15%;
 }
 
 .dates p {
-    text-wrap: wrap;
-    font-weight: 600;
-} 
+  text-wrap: wrap;
+  font-weight: 600;
+}
 
 .profession {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16pt;
-    letter-spacing: 0.1em;
-    color: #1E1E1E;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16pt;
+  letter-spacing: 0.1em;
+  color: #1e1e1e;
 }
 
 .description {
-    text-wrap: wrap;
+  text-wrap: wrap;
 
-    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    white-space: pre-wrap;       /* css-3 */
-    word-wrap: break-word;       /* Internet Explorer 5.5+ */
-    white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
-    word-break: break-all;
-    white-space: normal;
+  white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: pre-wrap; /* css-3 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+  word-break: break-all;
+  white-space: normal;
 }
