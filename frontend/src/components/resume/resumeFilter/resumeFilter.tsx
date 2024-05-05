@@ -35,7 +35,6 @@ function ResumeFilter() {
             );
     };
 
-
     useEffect(() => {
         api.get("/resumes/tags" + (searchString ? `?name=${searchString}` : ''))
             .then(response => {

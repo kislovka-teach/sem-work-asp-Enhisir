@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Profile, getProfileName } from "../../../types";
 import Container from "../../general/container";
 import classes from "./profileHeader.module.css"
+import Config from "../../../config/config";
 
 function ProfileHeader({ profile }: { profile: Profile }) {
     const navigate = useNavigate();
@@ -10,7 +11,7 @@ function ProfileHeader({ profile }: { profile: Profile }) {
     return <Container>
         <div className={classes.horizontalBlock}>
             <div className={classes.avatarContainer}>
-                <img src={profile.avatarLink} />
+                <img src={profile.avatarLink ?? Config.DefaultImage} />
             </div>
             <div className={classes.verticalBlock}>
                 <h2>{profile.userName}</h2>

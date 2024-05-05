@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Brah.Api.Controllers;
 
 [Route("[controller]")]
+[ApiController]
 public class ArticlesController(
     IDisplayArticlesService displayArticlesService,
     ISearchArticleTagsService searchArticleTagsService
@@ -38,7 +39,7 @@ public class ArticlesController(
     }
 
     [HttpGet("tags")]
-    public async Task<IResult> SearchArticleTags([FromQuery] string name)
+    public async Task<IResult> SearchArticleTags([FromQuery] string? name)
     {
         return Results.Ok(
             await searchArticleTagsService

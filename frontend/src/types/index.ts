@@ -47,6 +47,16 @@ export type ArticleThumbnail = {
     title: string;
 };
 
+export type UserThumbnail = { 
+    userName: string;
+    role: Role.User;
+}
+
+export enum Role {
+    User,
+     Admin
+}
+
 export type Profile = {
     userName: string;
     firstName: string;
@@ -115,6 +125,7 @@ export enum Gender {
     Male,
     Female
 };
+
 
 export type OptionContainer = {
     label: string,

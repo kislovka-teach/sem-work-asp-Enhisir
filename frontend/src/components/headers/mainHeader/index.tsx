@@ -4,8 +4,10 @@ import SearchComponent from "../../general/search/search";
 import Logo from '../../../assets/logo.svg'
 import classes from "./header.module.css"
 import { TopicNames } from "../../../types";
+import { useAuth } from "../../../auth";
 
 function MainHeader() {
+    const { userLoading, user, logout } = useAuth();
     return <header className={classes.header}>
         <div className={classes.leftWrapper} >
             <Link to="/" className={classes.logoContainer}>
@@ -25,9 +27,28 @@ function MainHeader() {
             <SearchComponent baseSearchString="/articles" />
         </div>
         <div className={classes.rightWrapper} >
-            <Link to="/login" className={classes.profileContainer}>
-                Войти
-            </Link>
+            {
+                !userLoading && user && (
+                    <>
+                        <Link to={`/users/${user.userName}`} className={classes.headerItem}>
+                            {user.userName}
+                        </Link>
+                        <span className={classes.headerItem} onClick={logout}>
+                            выйти
+                        </span>
+                    </>
+                )
+                || (
+                    <>
+                        <Link to="/login" className={classes.profileContainer}>
+                            войти
+                        </Link>
+                        <Link to="/register" className={classes.profileContainer}>
+                            зарегистрироваться
+                        </Link>
+                    </>
+                )
+            }
         </div>
     </header>
 }

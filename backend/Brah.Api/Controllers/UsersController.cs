@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Brah.Api.Controllers;
 
 [Route("[controller]")]
+[ApiController]
 public class UsersController(
     IDisplayProfileService displayProfileService) : ControllerBase
 {

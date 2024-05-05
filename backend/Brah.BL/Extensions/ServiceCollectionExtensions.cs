@@ -10,6 +10,8 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddBlServices(this IServiceCollection serviceCollection)
     {
         return serviceCollection
+            .AddSingleton<JwtOptions>()
+            .AddScoped<IJwtService, JwtService>()
             .AddScoped<IDisplayArticlesService, DisplayArticlesService>()
             .AddScoped<ISearchArticleTagsService, SearchArticleTagsService>()
             .AddScoped<IDisplayProfileService, DisplayProfileService>()

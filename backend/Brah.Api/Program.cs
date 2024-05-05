@@ -1,9 +1,11 @@
+using Brah.Api.Extensions;
 using Brah.BL.Extensions;
 using Brah.Data.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
+    .AddJwtConfigured()
     .AddDbContextConfigured()
     .AddRepositories()
     .AddBlServices()
