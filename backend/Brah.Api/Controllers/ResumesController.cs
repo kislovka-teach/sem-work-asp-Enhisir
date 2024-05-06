@@ -1,6 +1,8 @@
 using Brah.BL.Abstractions;
+using Brah.BL.Dtos.Requests.Resume;
 using Brah.BL.Exceptions;
 using Brah.Data.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Brah.Api.Controllers;
@@ -8,7 +10,8 @@ namespace Brah.Api.Controllers;
 [Route("[controller]")]
 public class ResumesController(
     IDisplayResumesService displayResumesService,
-    ISearchResumeTagsService searchResumeTagsService
+    IResumeService resumeService,
+    ITagsService tagsService
 ) : ControllerBase
 {
     [HttpGet]
@@ -46,9 +49,39 @@ public class ResumesController(
 
     [HttpGet("tags")]
     public async Task<IResult> SearchArticleTags([FromQuery] string name)
+        => Results.Ok(await tagsService.GetSimilarResumeTags(name));
+
+    [HttpPost("tags/new")]
+    [Authorize]
+    public async Task<IResult> AddTag([FromBody] CreateTagDto tagDto)
     {
-        return Results.Ok(
-            await searchResumeTagsService
-                .GetSimilarTags(name));
+        try
+        {
+            await tagsService.AddResumeTag(tagDto);
+            return Results.Ok();
+        }
+        catch (AlreadyExistsException)
+        {
+            return Results.Forbid();
+        }
+    }
+    
+    [HttpPost("new")]
+    [Authorize]
+    public async Task<IResult> Create([FromBody] CreateResumeRequestDto requestDto)
+    {
+        try
+        {
+            await resumeService.CreateResumeAsync(User.Identities.Single(), requestDto);
+            return Results.Ok();
+        }
+        catch (NotFoundException)
+        {
+            return Results.NotFound();
+        }
+        catch (AlreadyExistsException)
+        {
+            return Results.Forbid();
+        }
     }
 }

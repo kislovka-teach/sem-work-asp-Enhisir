@@ -1,5 +1,4 @@
 using Brah.BL.Abstractions;
-using Brah.BL.Dtos.Requests.Profile;
 using Brah.BL.Profiles;
 using Brah.BL.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,10 +13,10 @@ public static class ServiceCollectionExtensions
             .AddSingleton<JwtOptions>()
             .AddScoped<IJwtService, JwtService>()
             .AddScoped<IDisplayArticlesService, DisplayArticlesService>()
-            .AddScoped<ISearchArticleTagsService, SearchArticleTagsService>()
             .AddScoped<IDisplayProfileService, DisplayProfileService>()
             .AddScoped<IDisplayResumesService, DisplayResumesService>()
-            .AddScoped<ISearchResumeTagsService, SearchResumeTagsService>()
+            .AddScoped<IResumeService, ResumeService>()
+            .AddScoped<ITagsService, TagsService>()
             .AddScoped<IAuthService, AuthService>()
             .AddScoped<IPasswordHasherService, PasswordHasherService>()
             .AddScoped<IEditProfileService, EditProfileService>()

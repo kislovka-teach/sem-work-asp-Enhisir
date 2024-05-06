@@ -7,7 +7,7 @@ namespace Brah.Api.Controllers;
 [ApiController]
 public class ArticlesController(
     IDisplayArticlesService displayArticlesService,
-    ISearchArticleTagsService searchArticleTagsService
+    ITagsService tagsService
 ) : ControllerBase
 {
     [HttpGet]
@@ -33,16 +33,10 @@ public class ArticlesController(
     }
 
     [HttpGet("top")]
-    public async Task<IResult> GetTopTen()
-    {
-        return Results.Ok(await displayArticlesService.GetTop());
-    }
+    public async Task<IResult> GetTopTen() 
+        => Results.Ok(await displayArticlesService.GetTop());
 
     [HttpGet("tags")]
     public async Task<IResult> SearchArticleTags([FromQuery] string? name)
-    {
-        return Results.Ok(
-            await searchArticleTagsService
-                .GetSimilarTags(name));
-    }
+        => Results.Ok(await tagsService.GetSimilarArticleTags(name));
 }

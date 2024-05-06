@@ -1,8 +1,8 @@
 using AutoMapper;
 using Brah.BL.Dtos.Meta;
-using Brah.BL.Dtos.Requests;
 using Brah.BL.Dtos.Requests.Auth;
 using Brah.BL.Dtos.Requests.Profile;
+using Brah.BL.Dtos.Requests.Resume;
 using Brah.BL.Dtos.Responses;
 using Brah.BL.Dtos.Responses.Article;
 using Brah.BL.Dtos.Responses.Resume;
@@ -29,9 +29,12 @@ public class MappingProfile : Profile
         CreateMap<EditProfileRequestDto, User>()
             .ForAllMembers(opts => opts.Condition((_, _, srcMember) => srcMember != null));;
 
-        CreateMap<Topic, TopicDto>().ReverseMap();
-        CreateMap<ArticleTag, TagDto>().ReverseMap();
-        CreateMap<ResumeTag, TagDto>().ReverseMap();
+        CreateMap<Topic, TopicDto>();
+        CreateMap<ArticleTag, TagDto>();
+        CreateMap<ResumeTag, TagDto>();
+        CreateMap<CreateTagDto, ArticleTag>();
+        CreateMap<CreateTagDto, ResumeTag>();
+        
         CreateMap<WorkPlace, WorkPlaceDto>()
             .ForMember(
                 dest => dest.DateBegin,
@@ -41,6 +44,16 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(src => src.DateEnd == null
                     ? null
                     : src.DateEnd.Value.ToString("MM/dd/yyyy")));
+        CreateMap<CreateWorkPlaceDto, WorkPlace>()
+            .ForMember(
+                dest => dest.DateBegin, 
+                opt => opt.MapFrom(src => DateTime.Parse(src.DateBegin).ToUniversalTime()))
+            .ForMember(
+                dest => dest.DateEnd, 
+                opt => opt.MapFrom<DateTime?>(
+                    src => src.DateEnd != null
+                        ? DateTime.Parse(src.DateEnd).ToUniversalTime() 
+                        : null));
 
         CreateMap<Article, ArticleShortResponseDto>()
             .ForMember(
@@ -83,5 +96,9 @@ public class MappingProfile : Profile
             .ForMember(
                 dest => dest.UserName,
                 opt => opt.MapFrom(src => src.User.UserName));
+
+        CreateMap<CreateResumeRequestDto, Resume>()
+            .ForMember(dest => dest.Tags, opt => opt.Ignore())
+            .ForMember(dest => dest.WorkPlaces, opt => opt.Ignore());
     }
 }

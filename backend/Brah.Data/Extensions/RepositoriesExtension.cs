@@ -1,3 +1,4 @@
+using Brah.BL.Abstractions;
 using Brah.Data.Abstractions;
 using Brah.Data.Models.Articles;
 using Brah.Data.Models.Resumes;
@@ -12,6 +13,7 @@ public static class RepositoriesExtension
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         return services
+            .AddScoped<IHasTransactions, TransactionManager>()
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<IRepository<Article>, ArticleRepository>()
             .AddScoped<IRepository<ArticleTag>, StandardRepository<ArticleTag>>()
