@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Article } from "../../types";
 import { ArticleContainer } from "../../components/article";
-import PopularTagsList from "../../components/popularTagsList";
 import PopularArticlesList from "../../components/popularArticlesList";
 import CustomBeatLoader from "../../components/beatLoader";
 import CommentaryThread from "../../components/commentary/commentaryThread";
@@ -42,10 +41,12 @@ function ArticleFullPage() {
     <div className={classes.horizontalBlock}>
       <Feed style={{ width: "40vw" }}>
         <ArticleContainer article={article} />
-        <CommentaryThread rootCommentaries={article.commentaries} />
+        <CommentaryThread
+          rootCommentaries={article.commentaries}
+          articleId={article.id}
+        />
       </Feed>
       <div className={classes.rightSegment}>
-        <PopularTagsList />
         <PopularArticlesList />
       </div>
     </div>

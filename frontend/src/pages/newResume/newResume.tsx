@@ -1,12 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  GradeToString,
-  OptionContainer,
-  ResumeProfile,
-  Tag,
-  WorkPlace,
-} from "../../types";
+import { GradeToString, OptionContainer, ResumeProfile } from "../../types";
 import Container from "../../components/general/container";
 import { CustomInput, CustomTextArea } from "../../components/general";
 
@@ -21,9 +15,6 @@ export default function NewResumePage() {
   const navigate = useNavigate();
 
   const { user } = useAuth();
-
-  const [loading, setLoading] = useState<boolean>(true);
-  const [resumeInfo, setResumeInfo] = useState<ResumeProfile | null>();
 
   const [error, setError] = useState<string>();
 
@@ -58,7 +49,7 @@ export default function NewResumePage() {
     api
       .post("resumes/me", resume)
       .then(() => navigate("resumes/me"))
-      .catch(() => {});
+      .catch(() => setError("Возникла ошибка"));
   };
 
   if (user == null) navigate("/login");
@@ -123,25 +114,6 @@ export default function NewResumePage() {
           />
           <button onClick={saveResume}>Сохранить</button>
         </div>
-        {/* <div className={classes.verticalGroup}>
-                    {
-                        workplaces.flatMap(
-                            (cmp: WorkPlace, index: number) => (
-                                <div className={[classes.editableRow, classes.upperBorderBlock].join(" ")}>
-                                    <CompanyEditor
-                                        key={`company_${index}`}
-                                        companyInfo={cmp}
-                                        onCompanyChange={(cmpChanged: WorkPlace) => {
-                                            const newWorkPlaces = [...workplaces];
-                                            newWorkPlaces[index] = cmpChanged;
-                                            console.log(newWorkPlaces);
-                                            setWorkplaces(newWorkPlaces);
-                                        }} />
-                                    <DeleteButton />
-                                </div>))
-                    }
-                    <button>добавить новое место работы</button>
-                </div> */}
       </Container>
     </Feed>
   );

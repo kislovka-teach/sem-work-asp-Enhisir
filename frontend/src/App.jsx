@@ -4,6 +4,7 @@ import MainHeader from "./components/headers/mainHeader";
 
 import ArticleFeedPage from "./pages/articleFeed/articleFeed";
 import ArticleFullPage from "./pages/articleFull/articleFull";
+import NewArticlePage from "./pages/newArticle/newArticle";
 import ProfilePage from "./pages/profile/profile";
 
 import LoginPage from "./pages/login/login";
@@ -21,6 +22,7 @@ import EditProfilePage from "./pages/editProfile/editProfile";
 import MyResumePage from "./pages/myResume/myResume";
 import NewResumePage from "./pages/newResume/newResume";
 import EditResumePage from "./pages/editResume/editResume";
+import EditArticlePage from "./pages/editArticle/editArticle";
 
 function App() {
   const { userLoading } = useAuth();
@@ -65,9 +67,14 @@ function App() {
             <main>
               <Routes>
                 <Route path="/articles" element={<ArticleFeedPage />} />
+                <Route path="/articles/new" element={<NewArticlePage />} />
                 <Route
                   path="/articles/:articleId"
                   element={<ArticleFullPage />}
+                />
+                <Route
+                  path="/articles/:articleId/edit"
+                  element={<EditArticlePage />}
                 />
                 <Route path="/profile" element={<MyProfilePage />} />
                 <Route path="/profile/edit" element={<EditProfilePage />} />

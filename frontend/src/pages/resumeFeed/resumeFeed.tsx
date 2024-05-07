@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 
 import { ResumeThumbnailType } from "../../types";
-import PopularTagsList from "../../components/popularTagsList";
-import PopularArticlesList from "../../components/popularArticlesList";
 import CustomBeatLoader from "../../components/beatLoader";
 import Container from "../../components/general/container";
 import Feed from "../../components/general/feed";
@@ -64,8 +62,6 @@ function ResumeFeedPage() {
       </Feed>
       <div className={classes.rightSegment}>
         <ResumeFilter />
-        <PopularTagsList />
-        <PopularArticlesList />
       </div>
     </div>
   );

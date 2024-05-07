@@ -23,7 +23,7 @@ export function TagItem({
         .join(" ")
         .trim()}
     >
-      <p  onClick={onClick}>{tag.name}</p>
+      <p onClick={onClick}>{tag.name}</p>
     </div>
   );
 }

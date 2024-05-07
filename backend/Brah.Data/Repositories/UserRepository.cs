@@ -14,15 +14,15 @@ public class UserRepository(AppDbContext context) : IUserRepository
         bool includeResume = false)
     {
         var query = context.Users.AsNoTracking();
-        
+
         if (includeArticles)
             query = context.Users
                 .AsNoTracking()
-                .Include(u => u.Articles)
+                .Include(u => u.Articles.OrderByDescending(a => a.Id).ThenBy(a => a.TimePosted))
                 .ThenInclude(a => a.Topic)
-                .Include(u => u.Articles)
+                .Include(u => u.Articles.OrderByDescending(a => a.Id).ThenBy(a => a.TimePosted))
                 .ThenInclude(a => a.Tags);
-        
+
         if (includeResume)
             query = query
                 .Include(u => u.Resume)

@@ -3,25 +3,25 @@ using Brah.BL.Dtos.Requests.Resume;
 
 namespace Brah.BL.Abstractions;
 
-public interface IResumeService
+public interface IManageResumeService
 {
     public Task CreateResumeAsync(
-        ClaimsIdentity identity, 
+        ClaimsIdentity identity,
         CreateResumeRequestDto requestDto);
-    
+
     public Task UpdateResumeAsync(
-        ClaimsIdentity identity, 
+        ClaimsIdentity identity,
         UpdateResumeRequestDto requestDto);
-    
+
     public Task AddWorkPlaceAsync(
-        ClaimsIdentity identity, 
+        ClaimsIdentity identity,
         CreateWorkPlaceDto requestDto);
 
     public Task UpdateWorkPlaceAsync(
         ClaimsIdentity identity,
         UpdateWorkPlaceDto requestDto);
-    
+
     public Task RemoveWorkplaceAsync(
-        ClaimsIdentity identity, 
+        ClaimsIdentity identity,
         int workplaceId);
 }

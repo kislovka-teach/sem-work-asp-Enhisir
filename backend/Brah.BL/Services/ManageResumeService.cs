@@ -10,14 +10,14 @@ using Brah.Data.Models.Tags;
 
 namespace Brah.BL.Services;
 
-public class ResumeService(
+public class ManageResumeService(
     IMapper mapper,
     IHasTransactions transactionManager,
     IRepository<ResumeTagToResume> tagRelationsRepository,
     IUserRepository userRepository,
     IRepository<Resume> resumeRepository,
     IRepository<WorkPlace> workplaceRepository
-) : IResumeService
+) : IManageResumeService
 {
     public async Task RemoveWorkplaceAsync(ClaimsIdentity identity, int workplaceId)
     {
@@ -71,7 +71,7 @@ public class ResumeService(
             resume.Tags.Clear();
 
             var newTags = mapper.Map<List<ResumeTag>>(requestDto.Tags);
-            
+
             var countIds = new Dictionary<int, int>();
             foreach (var id in newTags.Select(t => t.Id))
             {
@@ -94,6 +94,7 @@ public class ResumeService(
         catch
         {
             transactionManager.RollbackTransaction();
+            throw;
         }
     }
 

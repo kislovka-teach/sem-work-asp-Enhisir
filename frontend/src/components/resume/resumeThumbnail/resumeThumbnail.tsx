@@ -30,13 +30,27 @@ function ResumeThumbnail({
           className={classes.verticalBlock}
           style={{ justifyContent: "center" }}
         >
-          {enableLink ? (
-            <Link className="altHref" to={`/resumes/${thumb.userName}`}>
+          <div
+            className={classes.horizontalBlock}
+            style={{ justifyContent: "space-between" }}
+          >
+            {enableLink ? (
+              <Link className="altHref" to={`/resumes/${thumb.userName}`}>
+                <h2>{getProfileName(thumb)}</h2>
+              </Link>
+            ) : (
               <h2>{getProfileName(thumb)}</h2>
-            </Link>
-          ) : (
-            <h2>{getProfileName(thumb)}</h2>
-          )}
+            )}
+            {isMe && (
+              <button
+                className="alternative"
+                style={{ textWrap: "nowrap" }}
+                onClick={() => navigate("/resumes/me/edit")}
+              >
+                редактировать резюме
+              </button>
+            )}
+          </div>
           <p className={classes.profession}>{thumb.profession}</p>
           <div className={classes.resumeFooter}>
             {thumb.lookingForWork ? (
@@ -54,20 +68,6 @@ function ResumeThumbnail({
             <h2>{GradeToString[thumb.grade]}</h2>
           </div>
         </div>
-        {isMe && (
-          <div
-            className={classes.verticalBlock}
-            style={{ justifyContent: "center" }}
-          >
-            <button
-              className="alternative"
-              style={{ textWrap: "nowrap" }}
-              onClick={() => navigate("/resumes/me/edit")}
-            >
-              редактировать резюме
-            </button>
-          </div>
-        )}
       </div>
     </Container>
   );

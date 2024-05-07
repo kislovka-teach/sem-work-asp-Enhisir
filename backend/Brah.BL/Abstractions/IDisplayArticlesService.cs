@@ -1,6 +1,4 @@
 using Brah.BL.Dtos.Responses.Article;
-using Brah.Data.Models.Articles;
-
 namespace Brah.BL.Abstractions;
 
 public interface IDisplayArticlesService

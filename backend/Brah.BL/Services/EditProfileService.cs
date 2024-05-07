@@ -18,7 +18,7 @@ public class EditProfileService(
     {
         var user = (await userRepository
             .GetSingleOrDefault(u => u.UserName.Equals(identity.Name)))!;
-        
+
         var newUser = mapper.Map(dto, user);
         await userRepository.UpdateAsync(newUser);
     }
@@ -30,16 +30,16 @@ public class EditProfileService(
 
         if (!passwordHasherService.Validate(user.PasswordHashed, dto.OldPassword))
             throw new InvalidPasswordException();
-        
+
         user.PasswordHashed = passwordHasherService.Hash(dto.NewPassword);
         await userRepository.UpdateAsync(user);
     }
-    
+
     public async Task UpdateImage(ClaimsIdentity identity, IFormFile image)
     {
         var user = (await userRepository
             .GetSingleOrDefault(u => u.UserName.Equals(identity.Name)))!;
-        
+
         if (user.AvatarLink != null)
             await minioService.DeleteImage(user.AvatarLink);
         var imageId = await minioService.SaveImage(image);

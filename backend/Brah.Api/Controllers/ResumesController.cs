@@ -11,7 +11,7 @@ namespace Brah.Api.Controllers;
 [Route("[controller]")]
 public class ResumesController(
     IDisplayResumesService displayResumesService,
-    IResumeService resumeService,
+    IManageResumeService manageResumeService,
     ITagsService tagsService
 ) : ControllerBase
 {
@@ -90,7 +90,7 @@ public class ResumesController(
     {
         try
         {
-            await resumeService.CreateResumeAsync(User.Identities.Single(), requestDto);
+            await manageResumeService.CreateResumeAsync(User.Identities.Single(), requestDto);
             return Results.Ok();
         }
         catch (NotFoundException)
@@ -109,7 +109,7 @@ public class ResumesController(
     {
         try
         {
-            await resumeService.UpdateResumeAsync(User.Identities.Single(), requestDto);
+            await manageResumeService.UpdateResumeAsync(User.Identities.Single(), requestDto);
             return Results.Ok();
         }
         catch (NotFoundException)
@@ -128,7 +128,7 @@ public class ResumesController(
     {
         try
         {
-            await resumeService
+            await manageResumeService
                 .AddWorkPlaceAsync(User.Identities.Single(), workPlaceDto);
             return Results.Ok();
         }
@@ -144,7 +144,7 @@ public class ResumesController(
     {
         try
         {
-            await resumeService
+            await manageResumeService
                 .UpdateWorkPlaceAsync(User.Identities.Single(), workPlaceDto);
             return Results.Ok();
         }
@@ -160,7 +160,7 @@ public class ResumesController(
     {
         try
         {
-            await resumeService
+            await manageResumeService
                 .RemoveWorkplaceAsync(User.Identities.Single(), workPlaceId);
             return Results.Ok();
         }

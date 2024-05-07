@@ -74,7 +74,8 @@ export const getProfileName = (profile: Profile | ResumeThumbnailType) =>
 
 export type Commentary = {
   id: number;
-  parent_id?: number;
+  articleId: Number;
+  parentId?: number;
   author: Author;
   text: string;
   datetime: Date;
@@ -143,8 +144,7 @@ export const TagToOptionContainer = (tag: Tag): OptionContainer => ({
   value: tag.id,
 });
 
-
 export const OptionContainerToTag = (opt: OptionContainer): Tag => ({
-  id: opt.value ,
+  id: opt.value,
   name: opt.label,
 });

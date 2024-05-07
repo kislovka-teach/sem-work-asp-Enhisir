@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Article } from "../../types";
 
-import PopularTagsList from "../../components/popularTagsList";
 import PopularArticlesList from "../../components/popularArticlesList";
 import CustomBeatLoader from "../../components/beatLoader";
 import Container from "../../components/general/container";
@@ -53,7 +52,6 @@ function ArticleFeedPage() {
       </Feed>
       <div className={classes.rightSegment}>
         <ArticleFilter />
-        <PopularTagsList />
         <PopularArticlesList />
       </div>
     </div>

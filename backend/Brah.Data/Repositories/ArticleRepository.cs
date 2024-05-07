@@ -8,15 +8,22 @@ namespace Brah.Data.Repositories;
 public class ArticleRepository(AppDbContext context) : IRepository<Article>
 {
     public async Task<Article?> GetSingleOrDefault(Expression<Func<Article, bool>> expression)
-        => await context.Articles
+    {
+        var result = await context.Articles
             .Include(e => e.Author) // tracking query because of making commentary tree
             .Include(e => e.Topic)
             .Include(e => e.Tags)
-            .Include(e => e.Commentaries
-                .Where(c => c.ParentId == null)
-                .OrderByDescending(c => c.TimePosted))
-                .ThenInclude(c => c.Children.OrderByDescending(x => x.TimePosted))
+            .Include(e => e.Commentaries)
+                .ThenInclude(c => c.Author)
+            .Include(e => e.Commentaries)
+                .ThenInclude(e => e.Children)
+                    .ThenInclude(c => c.Author)
+            .Include(e => e.Commentaries.Where(c => c.ParentId == null))
             .SingleOrDefaultAsync(expression);
+
+        context.ChangeTracker.Clear();
+        return result;
+    }
 
     public IQueryable<Article> GetRange()
     {
@@ -26,7 +33,7 @@ public class ArticleRepository(AppDbContext context) : IRepository<Article>
             .Include(e => e.Topic)
             .Include(e => e.Tags)
             .AsQueryable()
-            .OrderByDescending(a => a.TimePosted);
+            .OrderByDescending(a => a.Id);
     }
 
     public async Task<Article> AddAsync(Article entity)

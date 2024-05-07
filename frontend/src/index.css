@@ -126,3 +126,12 @@ button.alternative {
 button.alternative:hover {
   border-color: var(--border-color);
 }
+
+button.small {
+  height: min-content;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+}

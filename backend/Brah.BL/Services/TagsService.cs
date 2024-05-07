@@ -31,9 +31,9 @@ public class TagsService(
             .GetSingleOrDefault(t => t.Name.ToLower().Equals(tag.Name));
 
         if (existingTag is not null) throw new AlreadyExistsException();
-        
+
         var newTag = mapper.Map<ArticleTag>(tag);
-         return mapper.Map<TagDto>(await articleTagRepository.AddAsync(newTag));
+        return mapper.Map<TagDto>(await articleTagRepository.AddAsync(newTag));
     }
 
     public async Task<List<TagDto>> GetSimilarResumeTags(string? name = null)
@@ -46,14 +46,14 @@ public class TagsService(
 
         return mapper.Map<List<TagDto>>(list);
     }
-    
+
     public async Task<TagDto> AddResumeTag(CreateTagDto tag)
     {
         var existingTag = await resumeTagRepository
             .GetSingleOrDefault(t => t.Name.ToLower().Equals(tag.Name));
 
         if (existingTag is not null) throw new AlreadyExistsException();
-        
+
         var newTag = mapper.Map<ResumeTag>(tag);
         return mapper.Map<TagDto>(await resumeTagRepository.AddAsync(newTag));
     }

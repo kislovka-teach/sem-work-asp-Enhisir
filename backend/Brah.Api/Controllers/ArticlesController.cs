@@ -1,4 +1,8 @@
 using Brah.BL.Abstractions;
+using Brah.BL.Dtos.Requests.Article;
+using Brah.BL.Dtos.Requests.Resume;
+using Brah.BL.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Brah.Api.Controllers;
@@ -7,6 +11,7 @@ namespace Brah.Api.Controllers;
 [ApiController]
 public class ArticlesController(
     IDisplayArticlesService displayArticlesService,
+    IManageArticleService manageArticleService,
     ITagsService tagsService
 ) : ControllerBase
 {
@@ -33,6 +38,44 @@ public class ArticlesController(
         return Results.Ok(await displayArticlesService.GetById(articleId));
     }
 
+    [HttpPost("new")]
+    [Authorize]
+    public async Task<IResult> Create([FromBody] CreateArticleRequestDto requestDto)
+    {
+        try
+        {
+            await manageArticleService.CreateArticleAsync(User.Identities.Single(), requestDto);
+            return Results.Ok();
+        }
+        catch (NotFoundException)
+        {
+            return Results.NotFound();
+        }
+        catch (AlreadyExistsException)
+        {
+            return Results.Forbid();
+        }
+    }
+
+    [HttpPut("{articleId:int}")]
+    [Authorize]
+    public async Task<IResult> Update([FromBody] UpdateArticleRequestDto requestDto)
+    {
+        try
+        {
+            await manageArticleService.UpdateArticleAsync(User.Identities.Single(), requestDto);
+            return Results.Ok();
+        }
+        catch (NotFoundException)
+        {
+            return Results.NotFound();
+        }
+        catch (AlreadyExistsException)
+        {
+            return Results.Forbid();
+        }
+    }
+
     [HttpGet("top")]
     public async Task<IResult> GetTopTen()
         => Results.Ok(await displayArticlesService.GetTop());
@@ -40,4 +83,19 @@ public class ArticlesController(
     [HttpGet("tags")]
     public async Task<IResult> SearchArticleTags([FromQuery] string? name)
         => Results.Ok(await tagsService.GetSimilarArticleTags(name));
+
+    [HttpPost("tags/new")]
+    [Authorize]
+    public async Task<IResult> AddTag([FromBody] CreateTagDto tagDto)
+    {
+        try
+        {
+            var tag = await tagsService.AddArticleTag(tagDto);
+            return Results.Ok(tag);
+        }
+        catch (AlreadyExistsException)
+        {
+            return Results.Forbid();
+        }
+    }
 }

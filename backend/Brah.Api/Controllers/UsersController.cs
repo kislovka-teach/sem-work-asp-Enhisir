@@ -19,7 +19,7 @@ public class UsersController(
                     .GetByUserName(userName);
             return Results.Ok(profileResponseDto);
         }
-        catch (NotFoundException e)
+        catch (NotFoundException)
         {
             return Results.NotFound();
         }

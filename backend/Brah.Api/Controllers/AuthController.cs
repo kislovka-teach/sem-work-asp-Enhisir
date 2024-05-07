@@ -1,5 +1,4 @@
 using Brah.BL.Abstractions;
-using Brah.BL.Dtos.Requests;
 using Brah.BL.Dtos.Requests.Auth;
 using Brah.BL.Exceptions;
 using Microsoft.AspNetCore.Mvc;
