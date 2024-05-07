@@ -5,7 +5,7 @@ import AuthorBlock from "../authorBlock";
 import KarmaBlock from "../karma";
 import { Link } from "react-router-dom";
 import { TagItem } from "../tagContainer/tag";
-import TopicSpan from "../topicSpan/topicSpan";
+import TopicSpan from "./topicSpan/topicSpan";
 
 function ArticleContainer({
   article,
@@ -25,7 +25,7 @@ function ArticleContainer({
         <h2>{article.title}</h2>
       )}
       {
-        <div style={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", flexDirection: "row", gap: "0.5rem" }}>
           <TopicSpan topic={article.topic} />
           {article.tags.flatMap((tag, index) => (
             <TagItem key={`tag_item_${index}`} tag={tag} />

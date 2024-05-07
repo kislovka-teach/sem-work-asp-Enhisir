@@ -1,3 +1,4 @@
+using System.Globalization;
 using AutoMapper;
 using Brah.BL.Dtos.Meta;
 using Brah.BL.Dtos.Requests.Auth;
@@ -30,21 +31,31 @@ public class MappingProfile : Profile
             .ForAllMembers(opts => opts.Condition((_, _, srcMember) => srcMember != null));;
 
         CreateMap<Topic, TopicDto>();
-        CreateMap<ArticleTag, TagDto>();
-        CreateMap<ResumeTag, TagDto>();
+        CreateMap<ArticleTag, TagDto>().ReverseMap();
+        CreateMap<ResumeTag, TagDto>().ReverseMap();
         CreateMap<CreateTagDto, ArticleTag>();
         CreateMap<CreateTagDto, ResumeTag>();
         
         CreateMap<WorkPlace, WorkPlaceDto>()
             .ForMember(
                 dest => dest.DateBegin,
-                opt => opt.MapFrom(src => src.DateBegin.ToString("MM/dd/yyyy")))
+                opt => opt.MapFrom(src => src.DateBegin.ToLocalTime().ToString("MM/dd/yyyy")))
             .ForMember(
                 dest => dest.DateEnd,
                 opt => opt.MapFrom(src => src.DateEnd == null
                     ? null
-                    : src.DateEnd.Value.ToString("MM/dd/yyyy")));
+                    : src.DateEnd.Value.ToLocalTime().ToString("MM/dd/yyyy")));
         CreateMap<CreateWorkPlaceDto, WorkPlace>()
+            .ForMember(
+                dest => dest.DateBegin, 
+                opt => opt.MapFrom(src => DateTime.ParseExact(src.DateBegin, "MM.dd.yyyy", CultureInfo.InvariantCulture).ToUniversalTime()))
+            .ForMember(
+                dest => dest.DateEnd, 
+                opt => opt.MapFrom<DateTime?>(
+                    src => src.DateEnd != null
+                        ? DateTime.ParseExact(src.DateEnd, "MM.dd.yyyy", CultureInfo.InvariantCulture).ToUniversalTime() 
+                        : null));
+        CreateMap<UpdateWorkPlaceDto, WorkPlace>()
             .ForMember(
                 dest => dest.DateBegin, 
                 opt => opt.MapFrom(src => DateTime.Parse(src.DateBegin).ToUniversalTime()))
@@ -54,7 +65,7 @@ public class MappingProfile : Profile
                     src => src.DateEnd != null
                         ? DateTime.Parse(src.DateEnd).ToUniversalTime() 
                         : null));
-
+        
         CreateMap<Article, ArticleShortResponseDto>()
             .ForMember(
                 dest => dest.Text,
@@ -98,6 +109,9 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(src => src.User.UserName));
 
         CreateMap<CreateResumeRequestDto, Resume>()
+            .ForMember(dest => dest.Tags, opt => opt.Ignore())
+            .ForMember(dest => dest.WorkPlaces, opt => opt.Ignore());
+        CreateMap<UpdateResumeRequestDto, Resume>()
             .ForMember(dest => dest.Tags, opt => opt.Ignore())
             .ForMember(dest => dest.WorkPlaces, opt => opt.Ignore());
     }

@@ -2,7 +2,6 @@ using System.Security.Claims;
 using AutoMapper;
 using Brah.BL.Abstractions;
 using Brah.BL.Dtos.Meta;
-using Brah.BL.Dtos.Requests;
 using Brah.BL.Dtos.Requests.Auth;
 using Brah.BL.Dtos.Responses.Auth;
 using Brah.BL.Exceptions;
@@ -63,11 +62,11 @@ public class AuthService(
     private AuthResponseDto CreateAuthResponse(User user)
     {
         var accessTokenExpires = TimeSpan.FromDays(1);
-        var refreshTokenExpries = TimeSpan.FromDays(30);
+        var refreshTokenExpires = TimeSpan.FromDays(30);
 
         var identity = GetUserIdentity(user);
         var accessToken = jwtService.GenerateToken(identity, accessTokenExpires);
-        var refreshToken = jwtService.GenerateToken(identity, refreshTokenExpries);
+        var refreshToken = jwtService.GenerateToken(identity, refreshTokenExpires);
         return new AuthResponseDto
         {
             User = mapper.Map<UserThumbnailDto>(user),
@@ -80,9 +79,9 @@ public class AuthService(
     private AuthResponseDto CreateAuthResponse(ClaimsIdentity identity)
     {
         var accessTokenExpires = TimeSpan.FromDays(1);
-        var refreshTokenExpries = TimeSpan.FromDays(30);
+        var refreshTokenExpires = TimeSpan.FromDays(30);
         var accessToken = jwtService.GenerateToken(identity, accessTokenExpires);
-        var refreshToken = jwtService.GenerateToken(identity, refreshTokenExpries);
+        var refreshToken = jwtService.GenerateToken(identity, refreshTokenExpires);
 
         var userThumbnail = new UserThumbnailDto()
         {

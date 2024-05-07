@@ -14,14 +14,14 @@ public class DisplayArticlesService(
 {
     public async Task<List<ArticleShortResponseDto>> GetRange(
         string? title = null,
-        Topic? topic = null,
+        int? topic = null,
         int[]? tags = null,
         int? skip = null,
         int? take = null)
     {
         var query = articleRepository.GetRange()
             .Where(x => title == null || EF.Functions.TrigramsAreSimilar(x.Title, title))
-            .Where(x => topic == null || x.TopicId == topic.Id)
+            .Where(x => topic == null || x.TopicId == topic)
             .Where(x => tags == null || tags.Length == 0 ||
                         tags.Intersect(x.Tags.Select(t => t.Id)).Count() == tags.Length);
         /*var pageArticleList = query

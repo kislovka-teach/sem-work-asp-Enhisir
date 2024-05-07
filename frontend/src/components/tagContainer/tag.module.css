@@ -3,6 +3,7 @@
   align-items: center;
   text-align: center;
   text-transform: lowercase;
+  text-wrap: nowrap;
 
   padding: 0.25rem 1rem;
 

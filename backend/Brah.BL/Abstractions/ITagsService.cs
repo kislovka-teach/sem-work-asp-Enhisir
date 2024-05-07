@@ -7,6 +7,6 @@ public interface ITagsService
 {
     public Task<List<TagDto>> GetSimilarArticleTags(string? name = null);
     public Task<List<TagDto>> GetSimilarResumeTags(string? name = null);
-    public Task AddResumeTag(CreateTagDto tag);
-    public Task AddArticleTag(CreateTagDto tag);
+    public Task<TagDto> AddResumeTag(CreateTagDto tag);
+    public Task<TagDto> AddArticleTag(CreateTagDto tag);
 }

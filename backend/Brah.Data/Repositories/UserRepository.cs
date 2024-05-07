@@ -12,11 +12,27 @@ public class UserRepository(AppDbContext context) : IUserRepository
         Expression<Func<User, bool>> expression,
         bool includeArticles = false,
         bool includeResume = false)
-        => await context.Users
-            .AsNoTracking()
-            .IncludeIf(u => u.Articles, includeArticles)
-            .IncludeIf(u => u.Resume, includeResume)
-            .SingleOrDefaultAsync(expression);
+    {
+        var query = context.Users.AsNoTracking();
+        
+        if (includeArticles)
+            query = context.Users
+                .AsNoTracking()
+                .Include(u => u.Articles)
+                .ThenInclude(a => a.Topic)
+                .Include(u => u.Articles)
+                .ThenInclude(a => a.Tags);
+        
+        if (includeResume)
+            query = query
+                .Include(u => u.Resume)
+                .ThenInclude(r => r.Tags)
+                .Include(u => u.Resume)
+                .ThenInclude(r => r.WorkPlaces)
+                .Include(u => u.Resume);
+
+        return await query.SingleOrDefaultAsync(expression);
+    }
 
 
     public IEnumerable<User> GetRangeAsync(

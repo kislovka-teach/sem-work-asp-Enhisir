@@ -1,0 +1,30 @@
+.topicSpan {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: lowercase;
+    text-wrap: nowrap;
+
+    padding: 0.25rem 1rem;
+
+    width: fit-content;
+    height: min-content;
+
+    background: #8affa9;
+
+    border-radius: 0.5rem;
+}
+
+.topicSpan a {
+    text-decoration: none;
+    color: #ffffff;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10pt;
+}
+
+.topicSpan a:hover {
+    text-decoration: none;
+    color: #ffffff;
+}

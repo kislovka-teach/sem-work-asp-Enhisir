@@ -1,4 +1,4 @@
-namespace Brah.BL.Abstractions;
+namespace Brah.Data.Abstractions;
 
 public interface IHasTransactions
 {
@@ -11,4 +11,9 @@ public interface IHasTransactions
     /// Executes the transaction.
     /// </summary>
     void CommitTransaction();
+
+    /// <summary>
+    /// Rollbacks the transaction.
+    /// </summary>
+    public void RollbackTransaction();
 }

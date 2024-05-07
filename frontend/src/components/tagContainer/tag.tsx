@@ -5,10 +5,12 @@ import classes from "./tag.module.css";
 export function TagItem({
   tag,
   classname,
+  onClick,
   editable = false,
 }: {
   tag: Tag;
   editable?: boolean;
+  onClick?: () => void;
   classname?: string;
 }) {
   return (
@@ -21,7 +23,7 @@ export function TagItem({
         .join(" ")
         .trim()}
     >
-      <p>{tag.name}</p>
+      <p  onClick={onClick}>{tag.name}</p>
     </div>
   );
 }

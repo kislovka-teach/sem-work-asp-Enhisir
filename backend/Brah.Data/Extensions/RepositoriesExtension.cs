@@ -1,6 +1,6 @@
-using Brah.BL.Abstractions;
 using Brah.Data.Abstractions;
 using Brah.Data.Models.Articles;
+using Brah.Data.Models.MtM;
 using Brah.Data.Models.Resumes;
 using Brah.Data.Models.Tags;
 using Brah.Data.Repositories;
@@ -17,10 +17,12 @@ public static class RepositoriesExtension
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<IRepository<Article>, ArticleRepository>()
             .AddScoped<IRepository<ArticleTag>, StandardRepository<ArticleTag>>()
-            .AddScoped<IRepository<ResumeTag>, StandardRepository<ResumeTag>>()
+            .AddScoped<IRepository<ArticleTagToArticle>, StandardRepository<ArticleTagToArticle>>()
             .AddScoped<IRepository<Topic>, StandardRepository<Topic>>()
             .AddScoped<IRepository<Commentary>, CommentaryRepository>()
             .AddScoped<IRepository<Resume>, ResumeRepository>()
+            .AddScoped<IRepository<ResumeTag>, StandardRepository<ResumeTag>>()
+            .AddScoped<IRepository<ResumeTagToResume>, StandardRepository<ResumeTagToResume>>()
             .AddScoped<IRepository<WorkPlace>, StandardRepository<WorkPlace>>();
     }
 }

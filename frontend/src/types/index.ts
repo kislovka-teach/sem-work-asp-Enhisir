@@ -142,3 +142,9 @@ export const TagToOptionContainer = (tag: Tag): OptionContainer => ({
   label: tag.name,
   value: tag.id,
 });
+
+
+export const OptionContainerToTag = (opt: OptionContainer): Tag => ({
+  id: opt.value ,
+  name: opt.label,
+});

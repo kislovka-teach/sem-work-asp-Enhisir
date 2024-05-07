@@ -12,7 +12,7 @@ function TagContainer({
 }) {
   return (
     <Container>
-      <div className={classes.horizontalBlock}>
+      <div className={classes.horizontalBlock} style={{ flexWrap: "wrap" }}>
         {tags.flatMap((tag, index) => (
           <TagItem key={`tag_item_${index}`} tag={tag} editable={editable} />
         ))}

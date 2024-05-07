@@ -1,6 +1,6 @@
 import classes from "./topicSpan.module.css";
 import { Link } from "react-router-dom";
-import { Topic } from "../../types";
+import { Topic } from "../../../types";
 
 function TopicSpan({ topic }: { topic: Topic }) {
   return (

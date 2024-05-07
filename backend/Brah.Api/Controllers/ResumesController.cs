@@ -49,7 +49,7 @@ public class ResumesController(
     }
 
     [HttpGet("tags")]
-    public async Task<IResult> SearchArticleTags([FromQuery] string name)
+    public async Task<IResult> SearchArticleTags([FromQuery] string? name)
         => Results.Ok(await tagsService.GetSimilarResumeTags(name));
 
     [HttpPost("tags/new")]
@@ -58,8 +58,8 @@ public class ResumesController(
     {
         try
         {
-            await tagsService.AddResumeTag(tagDto);
-            return Results.Ok();
+            var tag = await tagsService.AddResumeTag(tagDto);
+            return Results.Ok(tag);
         }
         catch (AlreadyExistsException)
         {

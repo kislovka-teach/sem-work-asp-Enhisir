@@ -1,6 +1,7 @@
 using Brah.Data.Enums;
 using Brah.Data.Models;
 using Brah.Data.Models.Articles;
+using Brah.Data.Models.MtM;
 using Brah.Data.Models.Resumes;
 using Brah.Data.Models.Tags;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,15 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Article>()
             .HasMany<ArticleTag>(a => a.Tags)
             .WithMany()
-            .UsingEntity(e => e.ToTable("article_tag"));
+            .UsingEntity<ArticleTagToArticle>(
+                j => j
+                    .HasOne<ArticleTag>()
+                    .WithMany()
+                    .HasForeignKey(pt => pt.ArticleTagId),
+                j => j
+                    .HasOne<Article>()
+                    .WithMany()
+                    .HasForeignKey(pt => pt.ArticleId));
         modelBuilder.Entity<Article>()
             .HasOne<Topic>(a => a.Topic)
             .WithMany()
@@ -59,7 +68,15 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Resume>()
             .HasMany<ResumeTag>(c => c.Tags)
             .WithMany()
-            .UsingEntity(e => e.ToTable("resume_tag"));
+            .UsingEntity<ResumeTagToResume>(
+                j => j
+                    .HasOne<ResumeTag>()
+                    .WithMany()
+                    .HasForeignKey(pt => pt.ResumeTagId),
+                j => j
+                    .HasOne<Resume>()
+                    .WithMany()
+                    .HasForeignKey(pt => pt.ResumeId));
         modelBuilder.Entity<Resume>()
             .HasMany<WorkPlace>(c => c.WorkPlaces)
             .WithOne(w => w.Resume)
