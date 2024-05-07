@@ -1,4 +1,5 @@
 using Brah.Data.Abstractions;
+using Brah.Data.Models;
 using Brah.Data.Models.Articles;
 using Brah.Data.Models.MtM;
 using Brah.Data.Models.Resumes;
@@ -23,6 +24,8 @@ public static class RepositoriesExtension
             .AddScoped<IRepository<Resume>, ResumeRepository>()
             .AddScoped<IRepository<ResumeTag>, StandardRepository<ResumeTag>>()
             .AddScoped<IRepository<ResumeTagToResume>, StandardRepository<ResumeTagToResume>>()
-            .AddScoped<IRepository<WorkPlace>, StandardRepository<WorkPlace>>();
+            .AddScoped<IRepository<WorkPlace>, StandardRepository<WorkPlace>>()
+            .AddScoped<IRepository<Subscription>, StandardRepository<Subscription>>()
+            .AddScoped<IRepository<Notification>, StandardRepository<Notification>>();
     }
 }

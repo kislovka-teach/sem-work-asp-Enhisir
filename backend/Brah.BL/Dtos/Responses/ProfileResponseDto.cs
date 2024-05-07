@@ -9,6 +9,7 @@ public class ProfileResponseDto
     public string LastName { get; set; } = null!;
     public string AvatarLink { get; set; } = null!;
     public bool HasResume { get; set; }
+    public bool Subscribed { get; set; }
 
     public List<ArticleShortResponseDto> Articles { get; set; } = null!;
 }

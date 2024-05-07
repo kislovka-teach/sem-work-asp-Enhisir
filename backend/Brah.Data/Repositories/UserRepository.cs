@@ -11,7 +11,8 @@ public class UserRepository(AppDbContext context) : IUserRepository
     public async Task<User?> GetSingleOrDefault(
         Expression<Func<User, bool>> expression,
         bool includeArticles = false,
-        bool includeResume = false)
+        bool includeResume = false,
+        bool includeSubscriptions = false)
     {
         var query = context.Users.AsNoTracking();
 
@@ -30,6 +31,8 @@ public class UserRepository(AppDbContext context) : IUserRepository
                 .Include(u => u.Resume)
                 .ThenInclude(r => r.WorkPlaces)
                 .Include(u => u.Resume);
+
+        if (includeSubscriptions) query = query.Include(u => u.Subscriptions);
 
         return await query.SingleOrDefaultAsync(expression);
     }

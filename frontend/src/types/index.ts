@@ -67,6 +67,7 @@ export type Profile = {
   tags: Tag[];
 
   hasResume?: boolean;
+  subscribed: boolean; 
 };
 
 export const getProfileName = (profile: Profile | ResumeThumbnailType) =>

@@ -1,17 +1,33 @@
-import { useNavigate } from "react-router-dom";
+import { useActionData, useNavigate } from "react-router-dom";
 import { Profile, getProfileName } from "../../../types";
 import { GetAvatar } from "../../../services/image";
 import Container from "../../general/container";
 import classes from "./profileThumbnail.module.css";
+import { useAuth } from "../../../auth";
+import api from "../../../config/axios";
 
 function ProfileThumbnail({
-  profile,
-  isMe = false,
+  profile
 }: {
   profile: Profile;
   isMe?: boolean;
 }) {
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const isMe = profile.userName == user?.userName;
+
+  const subscribe = () => {
+    api
+      .post(`/users/${profile.userName}/subscribe`)
+      .then(() => navigate(0));
+  }
+
+  const unsubscribe = () => {
+    api
+      .delete(`/users/${profile.userName}/unsubscribe`)
+      .then(() => navigate(0));
+  }
 
   return (
     <Container>
@@ -24,7 +40,11 @@ function ProfileThumbnail({
           <p className={classes.name}>{getProfileName(profile)}</p>
         </div>
         <div className={[classes.verticalBlock, classes.buttonBlock].join(" ")}>
-          {!isMe && <button>подписаться</button>}
+          { !isMe && (
+            profile.subscribed 
+            ? <button onClick={unsubscribe}>отписаться</button>
+            : <button onClick={subscribe}>подписаться</button>
+          )}
           {profile.hasResume ? (
             <button
               className="alternative"

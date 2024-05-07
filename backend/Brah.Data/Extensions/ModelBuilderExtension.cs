@@ -97,6 +97,22 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<User>()
             .HasIndex(u => u.UserName)
             .IsUnique();
+
+        modelBuilder.Entity<Subscription>()
+            .HasOne<User>()
+            .WithMany(u => u.Subscriptions)
+            .HasForeignKey(s => s.ReaderId);
+        modelBuilder.Entity<Subscription>()
+            .HasOne<User>()
+            .WithMany()
+            .HasForeignKey(s => s.AuthorId);
+        modelBuilder.Entity<Subscription>()
+            .HasKey(s => new { s.ReaderId, s.AuthorId });
+
+        modelBuilder.Entity<Notification>()
+            .HasOne<User>(n => n.Author)
+            .WithMany()
+            .HasForeignKey(n => n.AuthorId);
     }
 
 

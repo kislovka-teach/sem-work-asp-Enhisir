@@ -20,6 +20,9 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
     public DbSet<ResumeTag> ResumeTags { get; init; } = null!;
     public DbSet<WorkPlace> WorkPlaces { get; init; } = null!;
 
+    public DbSet<Subscription> Subscriptions { get; set; } = null!;
+    public DbSet<Notification> Notifications { get; set; } = null!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

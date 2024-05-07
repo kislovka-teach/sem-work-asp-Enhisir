@@ -121,5 +121,13 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Tags, opt => opt.Ignore());
         CreateMap<UpdateArticleRequestDto, Article>()
             .ForMember(dest => dest.Tags, opt => opt.Ignore());
+
+        CreateMap<Notification, NotificationResponseDto>()
+            .ForMember(
+                dest => dest.AuthorUserName,
+                opt => opt.MapFrom(src => src.Author.UserName))
+            .ForMember(
+                dest => dest.AuthorAvatarLink,
+                opt => opt.MapFrom(src => src.Author.AvatarLink));
     }
 }

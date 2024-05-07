@@ -8,7 +8,8 @@ public interface IUserRepository
     public Task<User?> GetSingleOrDefault(
         Expression<Func<User, bool>> expression,
         bool includeArticles = false,
-        bool includeResume = false);
+        bool includeResume = false,
+        bool includeSubscriptions = false);
 
     public IEnumerable<User> GetRangeAsync(
         Expression<Func<User, bool>> expression,

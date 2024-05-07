@@ -22,7 +22,9 @@ public static class ServiceCollectionExtensions
             .AddScoped<IAuthService, AuthService>()
             .AddScoped<IPasswordHasherService, PasswordHasherService>()
             .AddScoped<IEditProfileService, EditProfileService>()
-            .AddScoped<IMinioService, MinioService>();
+            .AddScoped<IMinioService, MinioService>()
+            .AddScoped<INotificationsService, NotificationsService>()
+            .AddScoped<ISubscriptionService, SubscriptionService>();
     }
 
     public static IServiceCollection AddAutoMapperConfigured(this IServiceCollection serviceCollection)

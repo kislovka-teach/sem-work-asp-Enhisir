@@ -29,4 +29,6 @@ public class User
     public Resume? Resume { get; set; }
 
     public Role Role { get; set; }
+
+    public List<Subscription> Subscriptions { get; set; } = null!;
 }
