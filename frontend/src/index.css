@@ -1,3 +1,5 @@
+@import-normalize;
+
 :root {
   --header-height: 5rem;
   --sidebar-width: 19rem;

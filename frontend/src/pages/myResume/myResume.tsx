@@ -7,30 +7,32 @@ import CompanyList from "../../components/resume/company/companyList";
 import CustomBeatLoader from "../../components/beatLoader";
 import Container from "../../components/general/container";
 
-import classes from "./resumeProfile.module.css";
+import classes from "./myResume.module.css";
 import api from "../../config/axios";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth";
 
-function ResumeProfilePage() {
-  const { username } = useParams();
+function MyResumePage() {
+  const navigate = useNavigate();
+  const { userLoading, user } = useAuth();
 
   const [loading, setLoading] = useState<boolean>(true);
   const [resumeInfo, setResumeInfo] = useState<ResumeProfile | null>();
 
-  const { user } = useAuth();
-  const isMe = user != null && user.userName == resumeInfo?.userName;
-
   useEffect(() => {
+    if (userLoading) return;
+
+    if (user == null) navigate("/login");
+
     api
-      .get(`resumes/${username}`)
+      .get(`resumes/${user.userName}`)
       .then((response) => {
         console.log(response.data);
         setResumeInfo(response.data);
       })
       .catch(() => setResumeInfo(null))
       .finally(() => setLoading(false));
-  }, [username]);
+  }, [userLoading, user]);
 
   if (loading) return <CustomBeatLoader />;
 
@@ -49,7 +51,7 @@ function ResumeProfilePage() {
         minWidth: "min-content",
       }}
     >
-      <ResumeThumbnail thumb={resumeInfo} />
+      <ResumeThumbnail thumb={resumeInfo} isMe={true} />
       {resumeInfo.tags != null && resumeInfo.tags.length > 0 && (
         <TagContainer tags={resumeInfo.tags} />
       )}
@@ -57,32 +59,11 @@ function ResumeProfilePage() {
         <CompanyList companies={resumeInfo.workPlaces} />
       )}
       <Container>
-        {(resumeInfo.telegram != null || resumeInfo.email != null) && (
-          <>
-            <div className={classes.verticalBlock}>
-              <h2 className={classes.aboutHeader}>Связаться</h2>
-              {resumeInfo.telegram != null && (
-                <p>
-                  <span style={{ fontWeight: "600" }}>telegram:</span>{" "}
-                  <Link to={resumeInfo.telegram}>{resumeInfo.telegram}</Link>
-                </p>
-              )}
-              {resumeInfo.email != null && (
-                <p>
-                  <span style={{ fontWeight: "600" }}>почта:</span>{" "}
-                  {resumeInfo.email}
-                </p>
-              )}
-            </div>
-          </>
-        )}
-        <div className={classes.verticalBlock}>
-          <h2 className={classes.aboutHeader}>Обо мне</h2>
-          <p>{resumeInfo.about}</p>
-        </div>
+        <h2 className={classes.aboutHeader}>Обо мне</h2>
+        <p>{resumeInfo.about}</p>
       </Container>
     </Feed>
   );
 }
 
-export default ResumeProfilePage;
+export default MyResumePage;

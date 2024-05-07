@@ -97,18 +97,21 @@ export type ResumeThumbnailType = {
 export type ResumeProfile =
   | ResumeThumbnailType
   | {
+      telegram?: string;
+      email?: string;
       about: string;
       tags: Tag[];
       workPlaces: WorkPlace[];
     };
 
 export type WorkPlace = {
+  id: number;
   companyName: string;
   profession: string;
   grade: Grade;
   description: string;
-  dateBegin: Date;
-  dateEnd: Date | null;
+  dateBegin: string;
+  dateEnd: string | null;
 };
 
 export enum Grade {

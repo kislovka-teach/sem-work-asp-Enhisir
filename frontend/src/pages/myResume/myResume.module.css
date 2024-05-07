@@ -4,12 +4,6 @@
   gap: 1rem;
 }
 
-.verticalBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 .aboutHeader {
   color: #686868;
 }

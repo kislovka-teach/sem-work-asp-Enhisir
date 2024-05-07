@@ -23,6 +23,7 @@ public class ArticlesController(
                 title: search,
                 skip: skip,
                 take: take,
+                topic: topic,
                 tags: tags));
     }
 
@@ -33,7 +34,7 @@ public class ArticlesController(
     }
 
     [HttpGet("top")]
-    public async Task<IResult> GetTopTen() 
+    public async Task<IResult> GetTopTen()
         => Results.Ok(await displayArticlesService.GetTop());
 
     [HttpGet("tags")]

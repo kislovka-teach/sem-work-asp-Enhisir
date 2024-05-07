@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Brah.Api.Controllers;
 
+[ApiController]
 [Route("[controller]")]
 public class ResumesController(
     IDisplayResumesService displayResumesService,
@@ -65,8 +66,25 @@ public class ResumesController(
             return Results.Forbid();
         }
     }
-    
-    [HttpPost("new")]
+
+    [HttpGet("me")]
+    [Authorize]
+    public async Task<IResult> GetMyResume()
+    {
+        try
+        {
+            var profileResponseDto =
+                await displayResumesService
+                    .GetByUserName(User.Identities.Single().Name!);
+            return Results.Ok(profileResponseDto);
+        }
+        catch (NotFoundException)
+        {
+            return Results.NotFound();
+        }
+    }
+
+    [HttpPost("me")]
     [Authorize]
     public async Task<IResult> Create([FromBody] CreateResumeRequestDto requestDto)
     {
@@ -82,6 +100,73 @@ public class ResumesController(
         catch (AlreadyExistsException)
         {
             return Results.Forbid();
+        }
+    }
+
+    [HttpPut("me")]
+    [Authorize]
+    public async Task<IResult> Update([FromBody] UpdateResumeRequestDto requestDto)
+    {
+        try
+        {
+            await resumeService.UpdateResumeAsync(User.Identities.Single(), requestDto);
+            return Results.Ok();
+        }
+        catch (NotFoundException)
+        {
+            return Results.NotFound();
+        }
+        catch (AlreadyExistsException)
+        {
+            return Results.Forbid();
+        }
+    }
+
+    [HttpPost("workplaces/new")]
+    [Authorize]
+    public async Task<IResult> AddWorkplace([FromBody] CreateWorkPlaceDto workPlaceDto)
+    {
+        try
+        {
+            await resumeService
+                .AddWorkPlaceAsync(User.Identities.Single(), workPlaceDto);
+            return Results.Ok();
+        }
+        catch (NotFoundException)
+        {
+            return Results.NotFound();
+        }
+    }
+
+    [HttpPut("workplaces/{workPlaceId:int}")]
+    [Authorize]
+    public async Task<IResult> UpdateWorkplace([FromBody] UpdateWorkPlaceDto workPlaceDto)
+    {
+        try
+        {
+            await resumeService
+                .UpdateWorkPlaceAsync(User.Identities.Single(), workPlaceDto);
+            return Results.Ok();
+        }
+        catch (NotFoundException)
+        {
+            return Results.NotFound();
+        }
+    }
+
+    [HttpDelete("workplaces/{workPlaceId:int}")]
+    [Authorize]
+    public async Task<IResult> DeleteWorkPlace(int workPlaceId)
+    {
+        try
+        {
+            await resumeService
+                .RemoveWorkplaceAsync(User.Identities.Single(), workPlaceId);
+            return Results.Ok();
+        }
+        catch (NotFoundException)
+        {
+            return Results.NotFound();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Brah.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ImagesController(IMinioService minioService): ControllerBase
+public class ImagesController(IMinioService minioService) : ControllerBase
 {
     [HttpGet("{imageId}")]
     [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
@@ -21,7 +21,7 @@ public class ImagesController(IMinioService minioService): ControllerBase
             return Results.NotFound();
         }
     }
-    
+
     [HttpPost("post_image")]
     [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
     public async Task<IResult> GetImage(IFormFile image)

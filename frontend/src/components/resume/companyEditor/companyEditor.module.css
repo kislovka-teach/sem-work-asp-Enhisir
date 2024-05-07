@@ -1,0 +1,60 @@
+.companyBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.borderTop {
+  border-top: 1px solid #d9d9d9;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.baseTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: calc(75% - 1.5rem);
+}
+
+.datesGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.dateRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.profession {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16pt;
+  letter-spacing: 0.1em;
+  color: #1e1e1e;
+}
+
+.description {
+  text-wrap: wrap;
+
+  white-space: -moz-pre-wrap !important;
+  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  white-space: pre-wrap;
+  /* css-3 */
+  word-wrap: break-word;
+  /* Internet Explorer 5.5+ */
+  white-space: -webkit-pre-wrap;
+  /* Newer versions of Chrome/Safari*/
+  word-break: break-all;
+  white-space: normal;
+}

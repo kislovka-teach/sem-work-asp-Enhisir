@@ -28,7 +28,7 @@ public class ProfileController(
             return Results.NotFound();
         }
     }
-    
+
     [HttpPatch("edit")]
     public async Task<IResult> EditProfile([FromBody] EditProfileRequestDto requestDto)
     {
@@ -42,7 +42,7 @@ public class ProfileController(
             return Results.NotFound();
         }
     }
-    
+
     [HttpPost("change_password")]
     public async Task<IResult> ChangePassword([FromBody] ChangePasswordRequestDto requestDto)
     {
@@ -60,7 +60,7 @@ public class ProfileController(
             return Results.BadRequest();
         }
     }
-    
+
     [HttpPost("update_image")]
     [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
     public async Task<IResult> UpdateImage(IFormFile image)

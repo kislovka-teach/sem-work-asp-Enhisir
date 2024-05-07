@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   GradeToString,
   ResumeThumbnailType,
@@ -12,17 +12,24 @@ import { GetAvatar } from "../../../services/image";
 function ResumeThumbnail({
   thumb,
   enableLink = false,
+  isMe = false,
 }: {
   thumb: ResumeThumbnailType;
   enableLink?: boolean;
+  isMe?: boolean;
 }) {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <div className={classes.horizontalBlock}>
         <div className={classes.avatarContainer}>
           <img src={GetAvatar(thumb.avatarLink)} />
         </div>
-        <div className={classes.verticalBlock} style={{ justifyContent: "center"}}>
+        <div
+          className={classes.verticalBlock}
+          style={{ justifyContent: "center" }}
+        >
           {enableLink ? (
             <Link className="altHref" to={`/resumes/${thumb.userName}`}>
               <h2>{getProfileName(thumb)}</h2>
@@ -47,6 +54,20 @@ function ResumeThumbnail({
             <h2>{GradeToString[thumb.grade]}</h2>
           </div>
         </div>
+        {isMe && (
+          <div
+            className={classes.verticalBlock}
+            style={{ justifyContent: "center" }}
+          >
+            <button
+              className="alternative"
+              style={{ textWrap: "nowrap" }}
+              onClick={() => navigate("/resumes/me/edit")}
+            >
+              редактировать резюме
+            </button>
+          </div>
+        )}
       </div>
     </Container>
   );

@@ -41,31 +41,33 @@ public static class ConfigurationExtension
     {
         return services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { 
-                Title = "Brah", 
-                Version = "v1" 
+            c.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "Brah",
+                Version = "v1"
             });
-            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
                 Type = SecuritySchemeType.Http,
-                In = ParameterLocation.Header, 
+                In = ParameterLocation.Header,
                 Description = "Добавьте JWT Bearer token в это поле",
                 Name = "Authorization",
                 Scheme = "bearer",
                 BearerFormat = "JWT"
-        
+
             });
             c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                { 
-                    new OpenApiSecurityScheme 
-                    { 
-                        Reference = new OpenApiReference 
-                        { 
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
                             Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer" 
-                        } 
+                            Id = "Bearer"
+                        }
                     },
                     Array.Empty<string>()
-                } 
+                }
             });
         });
     }
@@ -75,9 +77,9 @@ public static class ConfigurationExtension
         var config =
             services.BuildServiceProvider()
                 .GetService<IConfiguration>()!;
-       return services.AddMinio(configureClient => configureClient
-            .WithEndpoint(config["Minio:Endpoint"])
-            .WithCredentials(config["Minio:AccessKey"], config["Minio:SecretKey"])
-            .WithSSL(false));
+        return services.AddMinio(configureClient => configureClient
+             .WithEndpoint(config["Minio:Endpoint"])
+             .WithCredentials(config["Minio:AccessKey"], config["Minio:SecretKey"])
+             .WithSSL(false));
     }
 }

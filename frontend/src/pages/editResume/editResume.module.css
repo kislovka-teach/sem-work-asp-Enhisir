@@ -27,6 +27,19 @@
   gap: 1.5rem;
 }
 
+.upperBorderBlock {
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #d9d9d9;
+}
+
+.editableRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .avatarContainer {
   width: 100px;
   height: 100px;
@@ -50,4 +63,11 @@
   height: 100%;
   width: 100%;
   justify-content: center;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
 }

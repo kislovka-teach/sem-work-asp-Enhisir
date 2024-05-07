@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 import { ResumeThumbnailType } from "../../types";
 import PopularTagsList from "../../components/popularTagsList";
