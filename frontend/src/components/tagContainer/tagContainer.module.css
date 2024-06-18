@@ -1,0 +1,7 @@
+.horizontalBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+
+  width: 100%;
+}

@@ -1,0 +1,137 @@
+@import-normalize;
+
+:root {
+  --header-height: 5rem;
+  --sidebar-width: 19rem;
+  --background-color: #f1f5f9;
+  --text-color: black;
+  --accent-color: #8ecae6;
+  --hover-color: #5b8192;
+  --border-color: #d9d9d9;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  box-sizing: border-box;
+}
+
+:root * {
+  box-sizing: border-box;
+}
+
+.altHref {
+  color: black;
+  text-decoration: none;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--hover-color);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+h2 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+h3 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+h4 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.customButton {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  padding: 0.5rem 1rem;
+
+  width: fit-content;
+  height: min-content;
+
+  background: #eef0f7;
+  color: #a5a5a5;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+button {
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  background-color: #8ecae6;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #709fb5;
+}
+
+button:disabled {
+  background: #eef0f7;
+  color: #a5a5a5;
+}
+
+button.alternative {
+  background: #eef0f7;
+  color: #a5a5a5;
+}
+
+button.alternative:hover {
+  border-color: var(--border-color);
+}
+
+button.small {
+  height: min-content;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+}

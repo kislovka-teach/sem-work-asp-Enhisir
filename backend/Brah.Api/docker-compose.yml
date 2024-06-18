@@ -1,0 +1,16 @@
+# docker-compose.yml
+
+version: "2"
+services:
+  minio:
+    restart: always
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    environment:
+      MINIO_ACCESS_KEY: Q3AM3UQ867SPQQA43P2F
+      MINIO_SECRET_KEY: zuf+tfteSlswRu7BJ86wtrueekitnifILbZam1KYY3TG
+    command: server /export
+    volumes:
+      - /mnt/hdd/minio/data:/export
+      - /mnt/hdd/minio/config:/root/.minio

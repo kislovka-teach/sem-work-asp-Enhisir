@@ -1,0 +1,35 @@
+.commentary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+  width: 100%;
+  height: fit-content;
+}
+
+.commentaryHeader {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.commentaryContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+  gap: 0.5rem;
+
+  background: #fafafa;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.commentaryButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  gap: 0.5rem;
+}
